@@ -1,10 +1,11 @@
 ---
 title: General principles for creating accessible content - Creating Accessible Content Guide
+showPageTOC: true
 --- 
 
 # General principles for creating accessible content
 
-## Alt text for images
+## Alt text for images {#alt-text}
 
 Alt text (“alternative text”) is a machine-readable tag that describes an image in words if the image cannot be displayed for any reason, including slow internet connection, error in the HTML code, or the use of assistive technology.
 
@@ -69,7 +70,7 @@ Image positioning matters for text documents (e.g. Word, PDF) when read by scree
 
 Only images with the Wrap Text style of "In Line with Text" are recognized by screen reader software. When exported to PDF, images with other wrapping styles will be skipped by a screen reader even when an alt tag is present.
 
-## Video and audio content
+## Video and audio content {#audiovisual}
 
 When creating video and audio content, it is important to ensure that it is accessible to users with visual, auditory, and neurological disabilities. Make sure that the video does not play automatically, as people should be able to choose when to play the content. A hearing impaired person may not be aware of the audio volume; users with physical or cognitive disabilities may not be as fast to stop the video and may impact other people in their environment, as well as feel embarrassed by the situation.
 
@@ -86,8 +87,7 @@ When creating video and audio content, it is important to ensure that it is acce
 
     - [YouTube auto captioning for video](https://www.youtube.com/)
     - [Kapwing Caption Video Online](https://www.kapwing.com/tools/caption-video)
-    - [IBM Watson auto captioning for audio](https://speech-to-text-demo.ng.bluemix.net/) (demo)
-
+    
 - **Transcripts**. Transcripts contain the full text of the spoken word (not necessarily verbatim) that could be accessed and read separately from the multimedia itself. Transcripts allow deaf/blind users to get content through the use of refreshable Braille devices. They are also useful for searching and navigating to a specific part of the text.
 
     When planning a video/audio recording, it is a good idea to have the transcript written out ahead of time. It can then be used both for the multimedia creation and to be made available afterwards.
@@ -98,7 +98,7 @@ When creating video and audio content, it is important to ensure that it is acce
 
 - **Sign language interpretation**. While closed captions or transcripts provide a suitable alternative for users with hearing disabilities who are comfortable reading written language, they may not be sufficient for deaf users who rely on sign language as their primary (or only) language of communication. In this case an alternative can be provided via sign language interpretation or other tools outlined in the [Accessibility for Sign Language users section](#accessibility-for-sign-language-users).
 
-## Accessible hyperlinks
+## Accessible hyperlinks {#hyperlinks}
 
 Users who navigate using a screen reader must be able to unambiguously understand the purpose of the link and skip links they are not interested in. To achieve this, link text needs to be:
 
@@ -116,7 +116,7 @@ Users who navigate using a screen reader must be able to unambiguously understan
 
 - **Visually distinct**. Use the default blue underlined style for hyperlinks. If you change it, make sure the links are still high contrast and underlined. Don't use underline for non-hyperlinked text.
 
-## Contrast and colour reliance
+## Contrast and colour reliance {#contrast}
 
 Contrast and colour use are vital to accessibility. Having insufficient contrast may affect users with visual disabilities. Having content that relies on colour to convey meaning may affect users with colour vision deficiencies (CVD) and those who rely on screen readers.
 
@@ -146,7 +146,7 @@ We often use colour in web content or in published content to convey meaning. Us
 
 ![An orange circle with a word Yes and a green circle with a word No.](./assets/3_a11y-guide-colour-circles-do.png)
 
-Other tools, such as the [Spectrum Chrome extension](https://chrome.google.com/webstore/detail/spectrum/ofclemegkcmilinpcimpjkfhjfgmhieb?hl=en) allow you to emulate different types of CVD on any website. This is particularly useful if your articles contain data visualisations. The following two figures, obtained from an article published in the journal Polar Research, illustrate how CVD can affect a user’s understanding of a graph or a chart.
+Other tools, such as the [Let's Go Color Blind Chrome Extension](https://chromewebstore.google.com/detail/lets-get-color-blind/bkdgdianpkfahpkmphgehigalpighjck) allow you to emulate different types of CVD on any website. This is particularly useful if your articles contain data visualisations. The following two figures, obtained from an article published in the journal Polar Research, illustrate how CVD can affect a user’s understanding of a graph or a chart.
 
 ![Two versions of the same map with different colours, description below.](./assets/4_a11y-guide-colour-chart2.png)
 
@@ -158,7 +158,7 @@ Other tools, such as the [Spectrum Chrome extension](https://chrome.google.com/w
 
 Certain web-based tools like [ColorBrewer](https://colorbrewer2.org/) provide accessible colour palettes for data visualisation, adapted to different types of datasets (sequential, diverging, qualitative). When in doubt, you may also fall back on different shapes or patterns to indicate delimitations in large groups of data points.
 
-## Readability and legibility of writing
+## Readability and legibility of writing {#readability}
 
 Understandably, text writing and formatting for a journal will likely follow conventions of a particular scholarly community. But there are general principles we can follow to make it more readable and legible.
 
@@ -168,7 +168,7 @@ Shorter paragraphs will make the text easier to read on small screens and will h
 
 [WebAim’s Writing Clearly and Simply](https://webaim.org/techniques/writing/) guide contains other helpful tips for writers to achieve clarity and simplicity. Additionally, tools like [Hemingway App](http://www.hemingwayapp.com/) can help evaluate your text for complexity and suggest ways of improving its general readability.
 
-## Headings structure
+## Headings structure {#headings}
 
 Headings help users understand how the content of a page is organized. Also, they provide in-page navigation which is used by web browsers, plug-ins, and assistive technologies. When creating web content, using heading hierarchy in rank order will help users navigate the document with more ease.
 
@@ -225,7 +225,7 @@ The heading hierarchy for documents on text editors should follow the same conce
 - Do not skip heading levels, e.g.: a *Heading 2* must be followed by a *Heading 3* then *Heading 4*, except when starting a new section
 - Headings should be unique to prevent any confusion while navigating, skimming or reading the whole document
 
-## Lists
+## Lists {#lists}
 
 According to the content presented and how the content creator wants to organize it, there are three types of lists for web content. The type of list used depends on the kind of information that is being organized and its purpose.
 
@@ -354,7 +354,7 @@ Below are some examples for description lists:
 >     <dd>Michael</dd>
 > </dl>
 
-## Columns
+## Columns {#columns}
 
 While newer screen readers are typically compatible with multi-column layout, some older screen readers may read the page left-to-right, line by line, rendering the text out of order.
 
@@ -364,7 +364,7 @@ If you determine that columns are the best way to present your web content, the 
 
 For text documents (e.g. Word, PDF) it is important to create columns using the Columns formatting tool rather than by using the tab key or spacebar to create whitespace between lines of text.
 
-## Tables
+## Tables {#tables}
 
 Tables should be used exclusively to present tabular data or content. Tables can help organize content with a logical relationship in grids, making it easier to read and understand. For more on accessibility in tables see the [W3C/WAI Tables Concepts page](https://www.w3.org/WAI/tutorials/tables/).
 
@@ -441,7 +441,7 @@ To [create accessible tables in Microsoft Word](https://kb.iu.edu/d/aqjl):
 * Add alt text in table properties
 * Choose table design that meets [WCAG contrast requirements](#contrast-and-colour-reliance)
 
-## Document metadata
+## Document metadata {#metadata}
 
 Adding metadata to your document increases its searchability. It also allows software applications and adaptive technologies to give the users the key information about the document, so they can easily find the desired document and determine if it is what they need. To learn more, see [the Better Practices in Journal Metadata guide](/metadata-practices/en/).
 
@@ -496,7 +496,7 @@ In XML:
 </section>
 ```
 
-## Accessibility for Sign language users
+## Accessibility for Sign language users {#sign-language}
 
 For some people with auditory disabilities, sign language may be the primary language, and they may not read the written language fluently or at all. Here are some of the strategies to make your content accessible to them:
 

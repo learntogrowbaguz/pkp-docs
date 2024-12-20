@@ -8,12 +8,12 @@ title: Translation - Technical Documentation - OJS|OMP|OPS
 
 PKP's applications support multilingual publishing. This means the application can be translated into any language. It also means that each journal, press or preprint server can publish material in more than one language. This chapter will describe how to use translations and work with multilingual data.
 
-> This guide describes how to work with translations when coding for PKP applications. Visit the [translating guide](./translating) to create or edit a translation of PKP software.
+> This guide describes how to work with translations when coding for PKP applications. Visit the [translating guide](/translating-guide/) to create or edit a translation of PKP software.
 {:.notice}
 
 ## Translations
 
-Every word or phrase used in the application is stored in a `.po` file. The following example shows part of the `locale/en_US/common.po` file.
+Every word or phrase used in the application is stored in a `.po` file. The following example shows part of the `locale/en/common.po` file.
 
 ```
 msgid "common.cancel"
@@ -90,8 +90,8 @@ Use the `translate` modifier if you have a variable that contains a locale key.
 Use multiple `msgstr` entries and the `__p()` method to handle plural forms.
 
 ```
-msgid "example.pendingMessages"
-msgid_plural "example.pendingMessages"
+msgid "common.pendingMessages"
+msgid_plural "common.pendingMessages"
 msgstr[0] "You have one message pending."
 msgstr[1] "You have {$messageCount} messages pending."
 ```
@@ -132,7 +132,7 @@ msgstr[2] "%d Komentarzy"
 
 A journal, press or preprint server may publish in more than one language. For that reason, all data objects and forms must accept content in more than one language.
 
-> The Entities chapter describes how to [get multilingual data in the DataObject class](/dev/documentation/en/architecture-entities#dataobject-class) and how to [define multilingual properties in the schema](/dev/documentation/en/architecture-entities#multilingual).
+> The Entities chapter describes how to [get multilingual data in the DataObject class](/dev/documentation/en/architecture-entities#dataobject) and how to [define multilingual properties in the schema](/dev/documentation/en/architecture-entities#schema).
 {:.notice}
 
 Each journal, press, or preprint server can enable a locale in the UI, forms and submissions.
@@ -178,7 +178,7 @@ use PKP\facades\Locale;
 
 $locale = Locale::getLocale();
 
-// result: "en_US"
+// result: "en"
 ```
 
 Change the active locale.
@@ -186,7 +186,7 @@ Change the active locale.
 ```php
 use PKP\facades\Locale;
 
-Locale::setLocale('en_US');
+Locale::setLocale('en');
 ```
 
 Get information about a locale, such as its display name, country, language, script, and direction. The following example shows the name of the English language in the German language.
@@ -194,7 +194,7 @@ Get information about a locale, such as its display name, country, language, scr
 ```php
 use PKP\facades\Locale;
 
-$localeMetadata = Locale::getMetadata('en_US');
+$localeMetadata = Locale::getMetadata('en');
 echo $localeMetadata->getDisplayName('de_DE');
 
 // result: Englisch
@@ -232,3 +232,7 @@ $currencies = Locale::getCurrencies();
 $languages = Locale::getLanguages();
 $scripts = Locale::getScripts();
 ```
+
+## Locale File Tools
+
+Tools are available to perform bulk operations on locale files. See [Resources](./resources) to learn more about these tools and how to use them.

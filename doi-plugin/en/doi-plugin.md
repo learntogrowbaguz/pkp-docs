@@ -1,10 +1,15 @@
+---
+title: DOI Plugin
+showPageTOC: true
+---
+
 # DOI Plugin
 
 The DOI Plugin assigns DOIs to publications. It can be configured to assign DOIs automatically or manually. The plugin will also generate and display the DOIs on the publication's landing page.  
 
 The plugin is included with OJS 2.4.x and 3.x, OPS 3.x, and OMP 3.x.
 
-## Enabling the DOI Plugin
+## Enabling the DOI Plugin {#enabling}
 
 Enabling the plugin in OJS, OMP, and OPS 3.x is all very similar.
 
@@ -12,7 +17,7 @@ Enabling the plugin in OJS, OMP, and OPS 3.x is all very similar.
 2. Under Installed Plugins &gt; Public Identifier Plugins, find DOI
 3. Click the box to the right of the DOI Plugin description to enable it
 
-## Configuring the DOI Plugin
+## Configuring the DOI Plugin {#configuring}
 
 After enabling the plugin, a **Settings** link will appear.  You may need to click a blue arrow next to the plugin name to make the Settings link appear.
 
@@ -41,6 +46,8 @@ There are several suffix generation strategies available. There are a few things
 **Individual DOI suffix**: Choosing the individual DOI suffix option will allow you to enter suffixes independently for any object. Only use this option if none of the other suffix generation strategies fulfill your needs - e.g. when your organization has global rules for suffix generation different from what can be implemented with custom patterns, or if you do not want to generate DOIs for all objects by default.
 
 **Custom Patterns**: When you enter custom patterns, it is your responsibility to create patterns that result in unique DOI suffixes for your prefix. You have to enter a combination of journal, issue, and object-specific identifiers to make sure that DOIs cannot be duplicated. A galley-suffix for example, that does not contain the journal ID can be duplicated among several journals if the same prefix is used for those journals. The same can happen if you generate DOIs for articles and issues without using the issue ID in the article suffix (e.g. when generating the DOI for the issue with the internal ID 1 and the article with internal ID 1). Look at the standard patterns for examples.
+
+**Note on changing DOI patterns at a later date**: DOIs will always be generated according to the currently configured pattern on assignment to an issue. This also means that **changing a pattern will not change already-assigned DOIs, only DOIs being generated from that moment on**. Be careful when changing patterns that the new pattern does not share its namespace with the previous pattern. Otherwise duplicate DOIs may result which will lead to problems when trying to register these IDs.
 
 _Recommendation 1_ // Read [Crossref's guide to constructing your DOIs](https://www.crossref.org/documentation/member-setup/constructing-your-dois/).
 

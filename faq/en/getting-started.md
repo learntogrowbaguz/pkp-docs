@@ -1,5 +1,6 @@
 ---
 title: FAQ about How to Get Started with Open Journal Systems (OJS), Open Monograph Press (OMP), and Open Preprint Systems (OPS)
+showPageTOC: true
 ---
 
 # Getting Started
@@ -26,7 +27,7 @@ OJS, OMP, and OPS all **require a web server and technical support** to host the
 
 Choosing to host software yourself entails a major obligation to maintain the service in a secure and accessible manner. The server and software application need to be maintained by a competent systems administrator who can do the following:
 
-* Perform upgrades of the application.
+* [Perform upgrades of the application](/dev/upgrade-guide/).
 * Perform upgrades of other software running on the server (e.g., PHP).
 * Run and test frequent backups.
 * [Configure and troubleshoot email](https://docs.pkp.sfu.ca/admin-guide/en/email) sent and received by the application.
@@ -44,7 +45,7 @@ You can also research online or post on the [PKP Community Forum](https://forum.
 
 ## I want to start a new journal using OJS. Where do I start?
 
-Starting an open access journal follows the same key steps as traditional journal formats. There are a number of factors you need to consider including funding models and copyright. We offer several PKP School courses related to this topic. To help determine funding models, see [Becoming an Editor](https://pkpschool.sfu.ca/courses/becoming-an-editor/) Module 8, Units 11-13. For help on copyright licensing, we recommend [Becoming an Editor](https://pkpschool.sfu.ca/courses/becoming-an-editor/) Module 11 and the Canadian Association of Learned Journals’ (CALJ) [copyright page](https://www.calj-acrs.ca/copyright). PKP also has a [checklist](https://docs.pkp.sfu.ca/starting-a-journal/) for setting up your new OJS journal.
+Starting an open access journal follows the same key steps as traditional journal formats. There are a number of factors you need to consider including funding models and copyright. We offer documentation and PKP School courses related to this topic. To help determine funding models, see [Sustainability Models and Revenue Sources](https://docs.pkp.sfu.ca/journal-policies-workflows/en/sustainability) in our Journal Policies and Workflows guide, and [Becoming an Editor](https://pkpschool.sfu.ca/courses/becoming-an-editor/) Module 8, Units 11-13 in PKP School. For help on copyright licensing, we recommend the [Copyright and Licensing](https://docs.pkp.sfu.ca/journal-policies-workflows/en/copyright-licensing) information in Journal Policies and Workflows, and [Becoming an Editor](https://pkpschool.sfu.ca/courses/becoming-an-editor/) Module 11. PKP also has a [checklist](https://docs.pkp.sfu.ca/starting-a-journal/) for setting up your new OJS journal.
 
 ## Can I use a single installation to manage a large number of journals?
 

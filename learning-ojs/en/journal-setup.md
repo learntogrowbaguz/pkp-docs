@@ -1,7 +1,8 @@
 ---
 book: learning-ojs
-version: 3.3
-title: Learning Open Journal Systems 3.3 - Journal Settings
+version: 3.4
+showPageTOC: true
+title: Learning Open Journal Systems 3.4 - Journal Settings
 ---
 # Journal Settings
 
@@ -9,7 +10,7 @@ The Settings section allows you to configure your OJS installation to best meet 
 
 You can find the Settings in the left menu panel when you are logged in as a user with Journal Manager permissions.
 
-![OJS dashboard View for Journal Managers with links to Settings menu and its submenus in left-hand sidebar.](./assets/learning-ojs3.1-jm-settings-journal.png)
+![OJS dashboard View for Journal Managers with links to Settings menu and its submenus in left-hand sidebar.](./assets/learning-ojs3.4-jm-settings-journal-page.png)
 
 It consists of Journal Settings, Website Settings, Workflow Settings, and Distribution Settings, which will be covered in the next 4 chapters.
 
@@ -17,7 +18,7 @@ The Journal Settings page includes details about the journal.
 
 Use the tabs to navigate to the different sections of Journal Settings: Masthead, Contact, Sections.
 
-![OJS dashboard view of Journal Settings with navigation tabs for the Settings submenus across top portion of page content.](./assets/learning-ojs3.2-jm-settings-journal-page.png)
+![OJS dashboard view of Journal Settings with navigation tabs for the Settings submenus across top portion of page content.](./assets/learning-ojs3.4-jm-settings-masthead-tabs.png)
 
 ## Masthead
 
@@ -33,7 +34,7 @@ This PKP School video explains how to configure the Masthead in OJS. To watch ot
 
 **Publisher** is the name of the organization publishing the journal.
 
-Note that the publisher name entered here is used for metadata but will not be displayed on your site. To show the publisher name on your site you can enter it under Journal Settings > Contact > Mailing Address. You can also add it under About the Journal below.
+Note that the publisher name entered here is used for metadata but will not be displayed on your site. To show the publisher name on your site you can enter it under Journal Settings > Contact > Mailing Address. You can also add it under "About the Journal" below.
 
 **ISSN** (International Standard Serial Number) is an eight-digit number which identifies journals. It is managed by a world wide network of National Centres coordinated by an International Centre based in Paris, backed by Unesco and the French Government. A number can be obtained from the [ISSN web site](https://www.issn.org/). This can be done at any point in operating the journal.
 
@@ -59,7 +60,7 @@ This PKP School video explains how to add journal contacts in OJS. To watch othe
 
 Use this section to add journal contacts.
 
-![OJS dashboard view of Journal Settings submenu Contact where information can be added in text fields.](./assets/learning-ojs3.2-jm-settings-journal-contact.png)
+![OJS dashboard view of Journal Settings submenu Contact where information can be added in text fields.](./assets/learning-ojs3.4-jm-settings-journal-contact.png)
 
 **Principal Contact**: Add contact information for the journal's main contact person, including name, email, phone, affiliation, and mailing address for the journal. This will appear on the journal's Contact page.
 
@@ -75,7 +76,7 @@ This PKP School video explains how to configure Sections in OJS. To watch other 
 
 Use this page to configure the different sections of your journal. E.g., Articles, Editorials, Reviews, Commentary, etc. OJS requires at least one section, and creates an "Articles" section by default. You can create new sections, edit existing sections, or delete sections. The sections will appear for an author to select when they make a submission and they will be used to organize the articles in your published issues. You can also assign editors to specific sections. This part of the guide explains how you can configure sections.
 
-![OJS dashboard view of Journal Settings submenu Sections with links for Order and Create Section and editable list of current sections.](./assets/learning-ojs3.2-jm-settings-journal-sections.png)
+![OJS dashboard view of Journal Settings submenu Sections with links for Order and Create Section and editable list of current sections.](./assets/learning-ojs3.4-jm-settings-journal-sections.png)
 
 Submissions can also be disabled for individual sections. This can be done in instances where a section is no longer being used, in order to prevent articles from being submitted to a particular section.
 
@@ -109,7 +110,7 @@ You can check off "Will not be included in the indexing of the journal" for sect
 
 **Identify items published in this section as a\(n\)**: This is used by some systems. Note that it is not a required field.
 
-**Section Editors**: If you have editors enrolled in your journal, you will see them listed here and can assign one of them to the section. This means any submissions made to the section are automatically assigned to the editor, saving you from manually assigning an editor.
+**Editorial Assignments**: Journal Editors and Section Editors can be assigned automatically to all new submissions in a section. Automatic assignment for copyeditors and layout editors is currently not supported.
 
 Hit the **Save** button to save your changes and return to the Sections page.
 
@@ -149,9 +150,9 @@ This PKP School video explains how to create categories in OJS. To watch other v
 
 {% include video.html id="Y97U1icfEPw" provider="youtube" title="Video of how to create categories in OJS"%}
 
-In OJS 3 you can create Categories to organize your articles into thematic collections and provide another way for readers to access your content. Categories can be displayed as a browse block on your journal site and readers can select a category to view all articles in that category. You can place an article in a category by editing its metadata, which is explained in the [Production and Publication chapter](./production-publication). This section explains how to create and edit categories.
+You can create Categories to organize your articles into thematic collections and provide another way for readers to access your content. Categories can be displayed as a browse block on your journal site and readers can select a category to view all articles in that category. You can place an article in a category by editing its metadata, which is explained in the [Production and Publication chapter](./production-publication). This section explains how to create and edit categories.
 
-![OJS dashboard view of Journal Settings submenu Categories with links for Order and Add a Category and editable list of current categories.](./assets/learning-ojs3.1-categories-menu.png)
+![OJS dashboard view of Journal Settings submenu Categories with links for Order and Add a Category and editable list of current categories.](./assets/learning-ojs3.4-categories-menu.png)
 
 To create a new category:
 

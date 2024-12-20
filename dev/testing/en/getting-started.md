@@ -6,9 +6,26 @@ title: Getting Started - Testing - OJS/OMP
 
 We use [Cypress](https://www.cypress.io/) and [PHPUnit](https://phpunit.de/) to test our applications. Before you can run the tests, you will need to [clone and configure](/dev/documentation/en/getting-started) the application's repository so that you have a working installation of the application on your local environment.
 
+## Requirements
+
+In OJS 3.5 or later, you will need to install and run [the Sendria mail server](https://pypi.org/project/sendria/) to locally run the cypress tests:
+
+```
+python3 -m pip install sendria
+```
+
+Add the following mail settings to your `config.inc.php` file:
+
+```
+default = smtp
+smtp = On
+smtp_server = localhost
+smtp_port = 1025
+```
+
 ## Configure your environment
 
-There are many ways to [configure your environment](https://docs.cypress.io/guides/guides/environment-variables.html#Setting) to run the Cypress tests. We recommend creating a `cypress.env.json` file.
+There are many ways to [configure your environment](https://docs.cypress.io/guides/guides/environment-variables#Setting) to run the Cypress tests. We recommend creating a `cypress.env.json` file.
 
 ```json
 {
@@ -24,14 +41,14 @@ There are many ways to [configure your environment](https://docs.cypress.io/guid
 
 Replace `****` with the values which match your local installation and place this file in your application's root directory.
 
-> The `DBTYPE` must match one of the options in the installation form. It is usually `mysqli` or `postgres`.
+> The `DBTYPE` must match one of the options in the installation form. It is usually `mysqli` or `postgres9`.
 {:.tip}
 
 The integration tests will install the software and create test data.
 
 ## Run integration tests
 
-The integration tests will install the software and run a number of tests to add users, make submissions, record editorial decisions and publish articles.
+The integration tests will install the software and run tests to add users, make submissions, record editorial decisions and publish articles.
 
 Before the integration tests are run, update your `config.inc.php` file and set the `installed` flag to `Off`.
 
@@ -41,7 +58,7 @@ Before the integration tests are run, update your `config.inc.php` file and set 
 installed = Off
 ```
 
-Run the following comand in the root directory of the application to start a server. The URL should match the `baseUrl` in `cypress.env.json`.
+Run the following command in the root directory of the application to start a server. The URL should match the `baseUrl` in `cypress.env.json`.
 
 ```
 php -S localhost:8000

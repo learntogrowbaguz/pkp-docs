@@ -1,7 +1,8 @@
 ---
 book: learning-ojs
-version: 3.3
-title: Learning Open Journal Systems 3.3 - User Account Management
+version: 3.4
+showPageTOC: true
+title: Learning Open Journal Systems 3.4 - User Account Management
 description: A guide for registering and managing your Open Journal Systems (OJS) account.
 ---
 
@@ -45,7 +46,7 @@ This PKP School video explains how to manage a user profile in OJS. To watch oth
 
 To view and edit your profile, log in and click your Username link from the upper right corner. Choose the View Profile link.
 
-![The View Profile menu.](./assets/learning-ojs3.1-ed-view-profile.png)
+![The View Profile menu.](./assets/learning-ojs3.3-edit-profile.png)
 
 From here, by choosing the different tabs, you can update your personal details, contact information, change your roles, add a personal image (which some journals may publish along with your article or on a list of editors), determine your notification settings, or update your password.
 
@@ -53,6 +54,7 @@ Under **Notifications**, you can configure what kinds of notifications you recei
 
 * Check off "Enable these types of notifications" if you want to see a notification of this event on your dashboard when you log in to the site
 * Check off "Do not send me an email for these types of notifications" if you do not want to receive an email notification about this event
+* You can also unsubscribe from automated email notifications, by following the unsubscribe link in your inbox
 
 ![The Notifications tab where you can manage notifications.](./assets/learning-ojs-3-user-notifications.png)
 

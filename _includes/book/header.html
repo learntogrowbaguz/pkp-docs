@@ -7,9 +7,13 @@
 		</button>
 	{% endif %}
 	<a class="bookHeader__logo" href="/">
-		<img src="/img/docs-logo.png" alt="{{ site.data.site.logoAltText }}" class="bookHeader__logoImage">
+		<img src="/img/logo-on-white.png" alt="{{ site.data.site.logoAltText }}" class="bookHeader__logoImage">
 	</a>
-	{% assign versions = site.data.versions[page.book] %}
-	{% assign current = page.version %}
-	{% include versions.html %}
+	<div class="bookHeaderTools">
+		{% assign versions = site.data.versions[page.book] %}
+		{% assign search = site.data.search[page.book] %}
+		{% assign current = page.version %}
+		{% include search.html %}
+		{% include versions.html %}
+	</div>
 </div>

@@ -3,6 +3,7 @@
 Once you have reviewed the features of OJS 3 and decided you want to proceed with the upgrade, you will need to do some careful planning to ensure a smooth process, minimal disruption to your publication schedule, and a happy editorial staff. Many of the changes are human resources related (i.e., training and visual design), as well as technical, so clear communication is important at every stage.
 
 The major steps in completing an upgrade are as follows:
+
 1. Decide if and when you’re ready to upgrade to OJS 3
 2. Decide which version of OJS 3 to upgrade to
 3. Communicate about the upgrade with your editorial team or journal contacts
@@ -35,6 +36,9 @@ For additional resources outlining the new features in OJS 3 and upgrade-related
 
 Generally you should upgrade to the latest version of OJS. However, if the latest version is a new major release (e.g., OJS 3.1.0, OJS 3.2.0), you may want to wait until the next minor release is available (e.g., OJS 3.1.0-1; OJS 3.2.0-1) because usually a new major release has a few unexpected bugs that will be fixed in the first minor release that follows. Check the [PKP website](https://pkp.sfu.ca/category/news/) for news about releases when making this decision.
 
+> ⚠️  The OJS 2.x to 3.x upgrade tools are only supported up to OJS 3.2.0-x. If you are upgrading from OJS 2.x to 3.x, we recommend upgrading to the most recent release of OJS 3.2.0. Once that is complete, upgrade from there to newer releases.
+{:.warning}
+
 ## Plan your upgrade
 
 Taking into account the steps involved, create a plan and timeline for the upgrade.
@@ -47,7 +51,7 @@ Determine what training and support will be needed by your editorial team before
 
 ## Ensure that your server meets the requirements of OJS 3 and modify if necessary
 
-The recommended server requirements for OJS 3 are:
+The recommended server requirements for OJS 3.2.0 are:
 
 - PHP >= 7.2
 - MySQL >= 4.1 or PostgreSQL >= 9.1.5
@@ -113,6 +117,9 @@ With this list of usernames, you can then use OJS’s built-in user merging tool
 
 ## Perform a sandbox or test upgrade
 
+> For more information about the technical steps for upgrading your system, see the [Technical Upgrade guide](/dev/upgrade-guide/).
+{:.notice}
+
 See the section below under [Upgrading Your OJS Instance - Step 1 - Perform a Sandbox Upgrade](./upgrading-ojs#step-1-perform-a-sandbox-upgrade)
 
 ## Evaluate, test, and troubleshoot your sandbox OJS 3 site
@@ -136,6 +143,7 @@ Though you have been communicating with the various team members throughout this
 ## Schedule the production upgrade
 
 Once you are ready to proceed with the upgrade, communicate to the journal team(s):
+
 * The upgrade date(s)
 * The downtime during which the journal website would not be available
 * Content freeze if you are pausing new content creation/modification prior to the upgrade

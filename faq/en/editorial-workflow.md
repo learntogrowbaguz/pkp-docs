@@ -1,5 +1,6 @@
 ---
 title: FAQ about the Editorial Workflow in Open Journal Systems (OJS) and Open Monograph Press (OMP)
+showPageTOC: true
 ---
 
 # Editorial Workflow
@@ -87,7 +88,9 @@ See also [this forum article](http://forum.pkp.sfu.ca/t/error-message-on-upload-
 
 ## How do I delete an article from OJS?
 
-To delete an article, you need to do the following:
+As of OJS 3.3, articles must first be declined before they can be deleted. Incomplete submissions must also be completed before they be declined. You may need to enter temporary / filler metadata and upload a sample file to complete a submission so that it can be declined and deleted.
+
+Depending on the workflow stage that the submission is in, a Journal Editor or Journal Manager may need to return to an earlier stage (such as Submission) and select "Change decision." Once the submission is declined, follow the steps below to delete the submission.
 
 - Login as the Journal Editor or Journal Manager
 - Find the article record on the submissions page

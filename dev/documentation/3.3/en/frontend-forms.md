@@ -12,7 +12,7 @@ Each form extends the `FormComponent` class.
 
 ```php
 /**
- * @file classes/components/form/context/PKPContactForm.inc.php
+ * @file classes/components/form/context/PKPContactForm.php
  */
 namespace PKP\components\forms\context;
 use PKP\components\forms\FormComponent;
@@ -177,7 +177,7 @@ class ContextForm extends PKPContextForm {
 }
 ```
 
-Use the `Form::config::before` hook when a [plugin](http://localhost:4000/dev/plugin-guide/en/) needs to modify a form. The example below removes the free-text subject metadata field and replaces it with a dropdown list.
+Use the `Form::config::before` hook when a [plugin](/dev/plugin-guide/en/) needs to modify a form. The example below removes the free-text subject metadata field and replaces it with a dropdown list.
 
 ```php
 HookRegistry::register('Form::config::before', function($hookName, $form) {
@@ -189,14 +189,14 @@ HookRegistry::register('Form::config::before', function($hookName, $form) {
 
 	$form->removeField('subjects');
 
-	$form->addField(new \PKP\components\forms\FieldSelect('subjects') {
-		'label' => __('common.subjects'),
-		'isMultilingual' => true,
-		'options' => [
-			['value' => 'geology', 'label' => __('subject.geology'),
-			['value' => 'physics', 'label' => __('subject.physics'),
-		],
-	});
+	$form->addField(new \PKP\components\forms\FieldSelect('subjects', [
+	    'label' => __('common.subjects'),
+	    'isMultilingual' => true,
+	    'options' => [
+	        ['value' => 'geology', 'label' => __('subject.geology')],
+	        ['value' => 'physics', 'label' => __('subject.physics')],
+	    ],
+	]));
 
 	return false;
 }

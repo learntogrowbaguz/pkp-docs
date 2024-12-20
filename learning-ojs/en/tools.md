@@ -1,7 +1,8 @@
 ---
 book: learning-ojs
-version: 3.3
-title: Learning Open Journal Systems 3.3 - Tools
+version: 3.4
+title: Learning Open Journal Systems 3.4 - Tools
+showPageTOC: true
 description: A guide to using the Tools menu in OJS, including Import/Export functions and QuickSubmit.
 ---
 

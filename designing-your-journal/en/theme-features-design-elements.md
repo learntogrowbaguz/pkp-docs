@@ -1,5 +1,6 @@
 ---
 title: Theme Features and Design Elements - Designing Your OJS Journal
+showPageTOC: true
 ---
 
 # Theme Features and Design Elements
@@ -10,7 +11,7 @@ You can customize your website’s look and feel by selecting one of the several
 
 With some themes you can change the colours under Website Settings > Appearance. The colour settings will appear after you select the theme. To adjust it to match a specific colour, e.g., your logo, use a colour-picker tool (via browser developer tools or browser extension) and copy the hex value (looks like #1e6292) into the drop-down box. For details on how to identify elements on a page, see the section [Identifying Elements of CSS](/designing-your-journal/en/creating-stylesheet.html#identifying-elements).
 
-In OJS you can use special plugins to add custom blocks to your site, including Twitter feeds, keyword clouds, and a list of most-read articles. [Learning OJS 3 - Website Settings](/learning-ojs/en/settings-website#appearance) explains how to do this.
+In OJS you can use special plugins to add custom blocks to your site, including Twitter feeds, keyword clouds, and a list of most-read articles. [Learning OJS 3 - Website Settings](/learning-ojs/en/settings-website#appearance) explains how to do this. To learn more about the different plugins available, see [the Plugin Inventory](/plugin-inventory/en/).
 
 The below tables can be used when selecting a theme based on the features and design elements available with each. The three tables compare image settings, colour and font options, and other features for 6 major themes available in OJS. 
 
@@ -48,7 +49,7 @@ This table compares display settings between the various themes, including how j
 
 | Features                                                                             	| [Default Theme](https://demo.publicknowledgeproject.org/ojs3/demo/index.php/demojournal/index) 	| [Pragma](https://demo.publicknowledgeproject.org/ojs3/demo/index.php/pragma/index)       	| [Manuscript](https://demo.publicknowledgeproject.org/ojs3/demo/index.php/manuscript/index)   	| [Health Science](https://demo.publicknowledgeproject.org/ojs3/demo/index.php/health-sciences/index) 	| [Immersion](https://demo.publicknowledgeproject.org/ojs3/demo/index.php/immersion/index)     	| [Classic](https://demo.publicknowledgeproject.org/ojs3/demo/index.php/classic/index)      	|
 |------------------------------    |----------------------    |------------------------------    |----------------------    |-----------------    |---------------------------------------------------------    |-----------    |
-| Journal summary on homepage 	 | Optional        		 | Yes                     		 | Optional        		 | Yes        		 | Optional (setting is called “Show journal description”)     | Optional ([See more](#displaying-the-journal-summary-on-the-homepage))     |
+| Journal summary on homepage 	 | Optional        		 | Yes                     		 | Optional        		 | No        		 | Optional (setting is called “Show journal description”)     | Optional ([See more](#displaying-the-journal-summary-on-the-homepage))     |
 | Placement of sidebar blocks 	 | Sidebar         		 | Footer                  		 | Sidebar         		 | Footer     		 | Footer                                             		 | Footer   	 |
 | Author Affiliation      		 | Displayed by default     | Togglable               		 | Displayed by default     | Togglable  		 | Togglable                                          		 | Togglable     |
 | Other features          		 |                 		 | Monochromatic homepage image     |                 		 |            		 | [Colour-blocking](#colour-blocking), Show section description             		 |      		 |
@@ -76,7 +77,7 @@ Note that the Journal Summary will appear overlaid on the homepage image, as sho
 
 #### Logos
 
-If you plan to use a logo with the Immersion theme, be aware that the logo will be placed directly over the . Consider using a transparent logo and be sure to maintain colour contrast between your logo and the Homepage Image. A logo with a large resolution will display as-is, so you may need to adjust the sizing before uploading the logo in the journal.
+If you plan to use a logo with the Immersion theme, be aware that the logo will be placed directly over the Homepage Image. Consider using a transparent logo and be sure to maintain colour contrast between your logo and the Homepage Image. A logo with a large resolution will display as-is, so you may need to adjust the sizing before uploading the logo in the journal.
 
 #### Colour-Blocking
 
