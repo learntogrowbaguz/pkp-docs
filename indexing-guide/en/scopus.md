@@ -1,3 +1,8 @@
+---
+title: Scopus
+showPageTOC: true
+---
+
 # Scopus
 
 Scopus is a source-neutral abstract and citation database for journals, book series, and conference series in the Health Sciences, Physical Sciences, Social Sciences, and Life Sciences literature, and one of the largest and most widely used indexes. Scopus is the largest indexer of global research content, with over 24,600 active titles, including 23,500+ peer-reviewed journals, 740+ books, and 300+ trade publications. Worldwide, Scopus is used by more than 5,000 academic, government and corporate institutions. Each subject area is curated by the Content Selection and Advisory Board (CSAB), an independent board of subject matter experts using quantitative and qualitative criterias. Journals accepted into Scopus must demonstrate the ability to maintain their quality status year over year. 
@@ -45,4 +50,4 @@ If a journal is rejected by Scopus, there is an embargo period after which the j
 
 Journals accepted into Scopus are evaluated once a year to confirm they are maintaining a level of quality and meeting Scopus benchmarks. Benchmarks are detailed on the [Scopus website](https://www.elsevier.com/solutions/scopus/how-scopus-works/content/content-policy-and-selection).
 
-Additional Resources: [Scopus Journal FAQs](https://www.elsevier.com/__data/assets/pdf_file/0011/1192583/ScopusFAQContentSelectionProcess20210928.pdf)
+Additional Resources: [Scopus Journal FAQs](https://assets.ctfassets.net/o78em1y1w4i4/1F7TRuno8t45wSx5xRZIyb/3d75dbaa5e06e333848508f9ef72a7f6/Scopus_FAQ-content-selection-process_2023Nov.pdf)

@@ -1,5 +1,7 @@
 ---
+title: Google Scholar Indexing 
 generateHeadingToc: true
+showPageTOC: true
 ---
 
 # Google Scholar Indexing
@@ -172,7 +174,7 @@ There are a few different ways to fix this issue, depending on how many OJS jour
 
 Otherwise, if you have so many journals on your OJS site that making a change for each individual journal will take too much time, you can use [an SQL command to adjust your journals database all at once](https://github.com/pkp/ojs/blob/stable-3_1_2/dbscripts/xml/upgrade/3.1.2_update.xml#L41..L42).
 
-Finally, you can upgrade to OJS version 3.1.2 and newer, where the fix for this bug has been built in. This is the recommended solution by both PKP and Google Scholar (see “Best practices for OJS journals” above.
+Finally, you can upgrade to OJS version 3.1.2 and newer, where the fix for this bug has been built in. This is the recommended solution by both PKP and Google Scholar (see “Best practices for OJS journals” above).
 
 ### Secure Socket Layer (SSL) certificate errors
 
@@ -233,6 +235,6 @@ These redirects would need to be permanent HTTP 301s and not HTTP 302s. For more
 
 1. [Google Scholar inclusion & troubleshooting guidelines](https://scholar.google.com/intl/en/scholar/inclusion.html#indexing)
 
-2. [“Indexing Repositories: Pitfalls & Best Practices” presentation from 2015 Open Repositories conference](https://www.or2015.net/wp-content/uploads/2015/06/or-2015-anurag-google-scholar.pdf) (targeted to repositories, but has good general guidelines for both Scholar & web indexing)
+2. [“Indexing Repositories: Pitfalls & Best Practices” presentation from 2015 Open Repositories conference]([https://www.or2015.net/wp-content/uploads/2015/06/or-2015-anurag-google-scholar.pdf](https://doi.org/10.5281/zenodo.6521981)) (targeted to repositories, but has good general guidelines for both Scholar & web indexing)
 
 3. [PKP Community Forum](https://forum.pkp.sfu.ca/)

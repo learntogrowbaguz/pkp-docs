@@ -1,6 +1,6 @@
 ---
 book: learning-ops
-version: 3.3
+version: 3.4
 title: Setting up and Maintaining Your Server - Learning OPS
 ---
 # Setting up and Maintaining Your Server
@@ -85,11 +85,13 @@ In the “Advanced settings” you can add several customizable options, such as
 
 The Plugins tab under Website Settings lists pre-installed plugins under Installed Plugins and additional plugins under Plugin Gallery. See [Learning OJS](/learning-ojs/en/settings-website#installed-plugins) for information about how to install and use plugins. The list below highlights the plugins that are especially useful for OPS.
 
-**AddThis**: This plugin allows adding social media sharing buttons to the preprint landing page. For a better usage, it is recommended to register an account at AddThis.
+To learn more about available plugins, see [the Plugin Inventory](/plugin-inventory/en/).
 
 **Browse Plugin**: This plugin adds the ability to browse by Categories and sub-categories through the Servers homepage.
 
 ![An instance of OPS with the Browse plugin enabled.](./assets/learning-ops-website-settings-browse-plugin.png)
+
+**Citation Style Language Plugin**: This plugin adds a “How to Cite” block to the article page that contains a citation for the article in the format of your choice, with an option below to generate the citation in another format.
 
 **Crossref Deposit Plugin**: This plugin is necessary to register preprints DOIs at Crossref. When enabled, it will automatically deposit the Preprint DOI during the post action.
 

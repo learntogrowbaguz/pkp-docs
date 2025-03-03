@@ -1,17 +1,8 @@
 
-### [Administrator's Guide](/admin-guide/)
+### [Administrator's Guide](/admin-guide/en)
 
-A guide for system administrators of PKP applications. [View Now](/admin-guide/)
-
----
-
-- [Installing and Upgrading](/admin-guide/en/managing-the-environment)
-- [Data Import and Export](/admin-guide/en/data-import-and-export)
-- [Statistics](/admin-guide/en/statistics)
-- [Email](/admin-guide/en/email)
-- [Troubleshooting](/admin-guide/en/troubleshooting)
-- ... and [more](/admin-guide/en/).
+How to install and configure the application, import and export data, secure your server, download statistics, and troubleshoot problems. [View Now](/admin-guide/en)
 
 ---
 
-<span class='fa fa-language'></span> Available in [Français](/admin-guide/fr/).
+Versions: [3.4](/admin-guide/en), [3.3](/admin-guide/3.3/en/) ([Français](/admin-guide/3.3/fr/))

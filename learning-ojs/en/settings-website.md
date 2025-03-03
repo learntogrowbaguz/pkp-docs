@@ -1,6 +1,8 @@
 ---
 book: learning-ojs
-version: 3.3
+version: 3.4
+showPageTOC: true
+title: Learning Open Journal Systems 3.4 - Website Settings
 ---
 
 # Website Settings
@@ -156,7 +158,13 @@ This section allows you to create and display news announcements on the journal'
   - **Introduction**: Enter any general information you would like to appear on your announcements page.
   - **Display on Homepage**: Enter the number of announcements to be displayed on the homepage. If this is left blank, no announcements will be displayed.
 
-Once the Announcements setting is enabled, click "Save." An "Announcements" menu item now appears in the main navigation on the left hand side. Click on this menu item and select "Add Announcement." Here you can include the title of the announcement, a short description and / or full text of the announcement, and an (optional) expiry date. If you wish to send an email notification to all users (who have not opted out of email notifications), select "Send notification email to all registered users." The announcement should now appear on an "Announcements" tab on the public-facing journal site.
+Once the Announcements setting is enabled, click "Save." An "Announcements" menu item now appears in the main navigation on the left hand side. Click on this menu item and select "Add Announcement." Here you can include the title of the announcement, a short description and / or full text of the announcement, and an (optional) expiry date. 
+
+If you wish to send an email notification to all users (who have not opted out of email notifications), select "Send notification email to all registered users." Note that this option only works when sending a new announcement. You can edit an announcement you made before, but no email will be sent at this stage if you select the "Send notification" option.
+
+![OJS 3.3 Create the text for a new announcement.](./assets/learning-ojs3.3-settings-website-new-announcement.png)
+
+The announcement should now appear on an "Announcements" tab on the public-facing journal site.
 
 ![OJS 3.3 Announcements menu enabled in the sidebar with an option to add and edit announcements.](./assets/learning-ojs3.3-settings-website-announcements.png)
 
@@ -185,6 +193,8 @@ This PKP School video explains how to configure Plugins in OJS. To watch other v
 {% include video.html id="PMAsXY_tLMU" provider="youtube" title="Video of how to configure plugins in OJS"%}
 
 Use this page to see all of the installed plugins and find new plugins.
+
+To learn more about available plugins, see [the Plugin Inventory](/plugin-inventory/en/).
 
 ### Installed Plugins
 
@@ -228,22 +238,6 @@ As some of the plugins below are 3rd party plugins, it may require that you down
 
 Please note that as PKP does not maintain 3rd party plugins, we cannot guarantee that it will work with your version of OJS.
 
-#### AddThis Plugin
-
-[AddThis](https://www.addthis.com/) permits easy social media sharing by integrating tools for several platforms into a compact set of configurable buttons. The plugin integrates AddThis into OJS/OMP for quick sharing of published content.
-
-This plugin can be enabled from the Plugin Gallery.
-
-![Social media sharing icons displayed on an article page by the AddThis plugin.](./assets/learning-ojs-settings-plugin-addthis.png)
-
-You can configure the social media icons and get statistics by clicking on the Setting button of the Plugin.
-
-![AddThis plugin settings button.](./assets/learning-ojs-settings-plugin-addthis-2.png)
-
-In order to get statistics from this plugin, you will need to register for an [AddThis account](https://www.addthis.com/).
-
-![AddThis plugin settings expanded with different display options.](./assets/learning-ojs-settings-plugin-addthis-3.png)
-
 #### Browse Plugin
 
 This plugin implements a block plugin that allows the user to navigate content by categories. The browse block appears on the journal's sidebar.
@@ -284,7 +278,7 @@ To configure and add custom blocks:
 
 * Click Manage Custom Blocks below the plugin name
 * From this screen, click Add Block to create a new block or click Edit or Delete under the block name to manage existing blocks.
-* When adding a new block, enter a name for your block (without spaces or non-alphanumeric characters) and the content to be shown in the sidebar.(**Please note**: this is a required field)
+* When adding a new block, enter a name for your block (required). In recent versions you can include spaces in the name and select whether or not the name  will appear above the block content.
 * The display and order of blocks can be edited from the Sidebar Management section of Dashboard > Settings > Website > Appearance > Setup.
 
 #### Custom Header Plugin

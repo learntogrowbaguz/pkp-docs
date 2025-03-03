@@ -1,3 +1,7 @@
+---
+title: Recursos adicionais - Criando Conteúdo Acessível
+---
+
 # Recursos adicionais
 
 Apresentamos a seguir uma lista não extensa de recursos adicionais sobre a criação de conteúdo acessível.
@@ -29,8 +33,6 @@ Apresentamos a seguir uma lista não extensa de recursos adicionais sobre a cria
 - [WebAIM Alternative Text](https://webaim.org/techniques/alttext/) - Informações sobre o uso apropriado de texto alternativo (Alt Text).
 
 - [Escrevendo para acessibilidade na web](https://www.w3.org/WAI/tips/writing/) - Dicas sobre as considerações básicas de como escrever para acessibilidade na web desenvolvidas pela W3C.
-
-- [Criando Documentos Acessíveis no Microsoft Word](https://www.washington.edu/accessibility/documents/word/) - Um guia online desenvolvido pela Universidade de Washington com informações sobre como criar um documento acessível usando o Microsoft Word.
 
 - [Criação de documentos acessíveis](https://www.washington.edu/accessibility/documents/) - informações gerais desenvolvidas pela Universidade de Washington com informações sobre a criação de documentos acessíveis.
 

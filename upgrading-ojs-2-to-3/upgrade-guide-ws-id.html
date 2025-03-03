@@ -1,0 +1,727 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>OJS 2 to OJS 3 Upgrade Guide</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="5cb4229c-b64e-4fa2-a44f-6d1c6997b453" class="page sans"><header><h1 class="page-title">Panduan <i>Upgrade</i> OJS 2 ke OJS 3</h1><p class="page-description"></p></header><div class="page-body"><p id="a9dee8ea-c616-4087-ba42-884eaaedfbab" class=""><em>Versi 1.2<br/>17 Juli 2024<br/>Hak Cipta: Public Knowledge Project<br/>Karya ini dilisensikan secara terbuka melalui <br/></em><em><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA</a></em><br/>Diterjemahkan oleh Maria Lamury dan Dwi Fajar Saputra</p><p id="248d9f9f-b111-4e7e-8ad4-e1108179b0ba" class="">
+</p><p id="5f001f83-45f6-4980-9707-94a7f2d4e266" class="">Panduan ini memberikan <i>best practice</i> untuk melakukan <i>upgrade</i>  Open Journal System (OJS) versi 2.x ke versi 3.3.0 (LTS), termasuk pedoman <i>troubleshooting</i>  untuk masalah <i>upgrade</i>  yang sering terjadi. Panduan ini digunakan sebagai panduan pendukung pada dokumentasi <a href="https://docs.pkp.sfu.ca/dev/upgrade-guide/en/">How to Upgrade</a> dan <a href="https://docs.pkp.sfu.ca/dev/upgrade-guide/en/">How to Upgrade</a> and <a href="https://docs.pkp.sfu.ca/admin-guide/en/troubleshooting">Troubleshooting</a>. Sebelum melanjutkan, <i>review</i>  dokumentasi ini untuk mempelajari tentang alur kerja <i>upgrade</i>  OJS dan cara bekerja dengan instalasi OJS Anda.</p><p id="462e3480-895d-44ed-8956-30529db1217b" class="">
+</p><nav id="0ae59053-5dd7-47fb-82ea-38defca42b01" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#029c9fd6-e4bb-4a51-bc54-8b7ee710d918">Syarat Utama: Pencadangan Data (<i>Backup</i>) dan Perangkat Pendukung</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#a8e4c2dd-cdcf-4a43-b56a-3e087b804867">Syarat Utama: <i>Database</i> OJS</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3dbb2759-df84-417c-b2f9-cb81973329b1">Pengkodean Karakter dan Pengaturan <i>Collation</i></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#7d21cb69-8e62-407c-8ddc-b1aa2729e745">Hapus Tabel Indeks Pencarian</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#284e71af-f4a6-4446-b61d-f12c93688370">Tentukan Mesin MySQL</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#8d554d1b-7c8b-4976-9bc4-04e411477d0a">Konversi Tabel MyISAM ke InnoDB</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#409e7e7d-d7b1-4191-b019-c98223f9026f">Berikan REFERENCE Hak Istimewa (<i>Privilege</i>)</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#ee6cc396-5425-4db4-8d1a-7a007b4fed66">Tahapan Persiapan</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#3d2328a1-1d1d-471c-a3bc-eb2a84457bc2">Langkah Pertama: Masuk ke OJS 2.4.8-5</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#eb8ca215-b40f-4b75-9c2d-bced116721b6">Skenario 1 versi yang direkomendasikan: OJS 3.2.1-5</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#8491224c-9c79-448b-882c-c0701eb583d7">File Tambahan: Submission Files atau Public Galleys?</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#83b31e68-1b55-408c-bfa6-40ab70b18c1f">Langkah Terakhir: OJS 3.3.0</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#b1620077-2ced-4640-bac7-321f70785dc9">Pembangunan Ulang Indeks Pencarian</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#e1ba7e7c-fd98-4c34-8a03-6da1d678723a">Mengatasi Masalah Umum</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#f806db5b-0bd8-4768-a498-177eda6d6433"><i>Error</i> Versi Plugin</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#90176221-7744-459b-b005-d689152abba2">Notifikasi Null Review Round ID</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#b21e1d4c-d32c-4330-b5b2-4a7dbc3d12ce">TinyMCE</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#a138b173-05e9-47c6-9817-2f7bbae33f82">Pengaturan Bahasa</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#9ac56f37-9779-4ea4-8e5b-a15642f46015">Masalah Pengkodean Karakter <i>Database</i></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#71b55b14-1ca1-455a-88f7-18a43b1534d7"><i>Error</i> Foreign Key MySQL</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#4f714c9c-a2b5-468b-a518-c206ead22abf"><i>Error</i> Hak Istimewa (privilege) MySQL</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1f4a17ae-a161-40eb-aeca-e667eeb7366a">Sumber Informasi tambahan</a></div></nav>
+
+<h2 id="029c9fd6-e4bb-4a51-bc54-8b7ee710d918" class="">Syarat Utama: Pencadangan Data (<i>Backup</i>) dan Perangkat Pendukung</h2>
+<p>Sebagai persiapan untuk alur kerja di bawah ini, Anda harus menyelesaikan keseluruhan proses <em>backup </em>dari instalasi OJS yang telah Anda gunakan di <em>production</em>. Selain <em>backup</em><em> </em>awal ini, Anda perlu melakukan <em>backup</em> secara menyeluruh dari bagian OJS yang sudah dilakukan instalasi, jika sudah selesai <em>upgrade</em> mohon dapat melakukan <em>backup</em> juga secara bertahap. </p>
+<p>Kegunaan dari <em>b</em><em>ackup</em> pada kasus ini akan memungkinkan Anda dapat mengembalikan instalasi ke versi sebelumnya jika diperlukan (<em>restore</em>), membuat penyesuaian yang diperlukan pada instalasi Anda untuk memperbaiki <em>error</em> <em>upgrade</em>, dan kemudian dapat melakukan <em>upgrade</em><em> </em>kembali. Dokumentasi <a href="https://docs.pkp.sfu.ca/dev/upgrade-guide/en/">How to Upgrade</a> mencakup instruksi detail untuk <em>backup</em> instalasi OJS Anda. Jika Anda perlu memulihkan instalasi Anda ke versi pra-<em>upgrade</em>, file config OJS, <em>database</em>, serta folder files yang berisi berbagai file seperti <em>draft</em> artikel, artikel yang diterbitkan dan lain-lain perlu dikembalikan dari hasil yang sudah di-<em>backup</em>.</p>
+<figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="d34b441e-4cf1-4c70-a3e8-5fd9eca797dd"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong>Penting</strong>: Harus selalu ada backup versi production OJS Anda sebelum mencoba upgrade ke versi yang baru.</div></figure>
+Jika <em>upgrade</em> gagal dengan pesan <em>error</em>, atau notifikasi lain sehingga <em>upgrade</em> tidak selesai dengan sepenuhnya, Anda harus mengembalikan instalasi OJS ke versi pra-<em>upgrade</em> menggunakan <em>backup</em> Anda. Setelah Anda mengembalikan instalasi ke versi pra-<em>upgrade</em>, Anda perlu mengatasi <em>error</em> <em>upgrade</em>, lalu mencoba <em>upgrade</em> kembali. Proses ini mungkin perlu diulang beberapa kali (<em>trial error</em>) hingga <em>upgrade</em> berhasil diselesaikan. <em>Upgrade</em> akan berhasil jika Anda melihat pesan berikut: 
+<code>Successfully upgraded to version X.X.X.X</code></p>
+<figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="3ba292a6-5a1e-47cc-bdf1-84e4afa6456c"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong>Penting:</strong> Jangan lanjutkan ke proses upgrade versi berikutnya jika langkah upgrade saat ini belum berhasil diselesaikan. Hal ini akan menyebabkan hilangnya data dan mengakibatkan error pada upgrade berikutnya.</div></figure><p id="f843b06a-e32a-4616-a7fe-178f15c4de86" class="">Disarankan agar setiap langkah <em>upgrade</em> yang didokumentasikan di bawah ini dijalankan langsung pada server melalui <em>command-line</em>, bukan melalui <em>web </em><em>browser</em>. Ini akan memungkinkan Anda untuk mengontrol dan memantau pelaksanaan kode skrip <em>upgrade</em> OJS. Untuk memastikan bahwa proses <em>upgrade</em> memiliki memori yang memadai dan tidak habis waktu (<em>r</em><em>un time error</em>), pengaturan PHP CLI berikut disarankan saat menjalankan kode skrip <em>upgrade</em> OJS:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3dd92c6c-b63d-481a-b9d6-f688a8c81f5c" class="code"><code class="language-Shell">php -d memory_limit=-1 tools/upgrade.php upgrade</code></pre><h2 id="a8e4c2dd-cdcf-4a43-b56a-3e087b804867" class="">Syarat Utama: Database OJS</h2><h3 id="3dbb2759-df84-417c-b2f9-cb81973329b1" class="">Pengkodean Karakter dan Pengaturan Collation</h3><p id="f5c5bf00-44ea-45f9-9a38-a58964e01338" class="">Sebelum memulai, periksa <em>database </em>OJS Anda dan catat penggunaan karakter MySQL dan pengaturan <em>Collation</em> Anda:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5264ace7-a6a5-46ad-8b65-4dd2f22fe45f" class="code"><code class="language-SQL">SHOW VARIABLES LIKE &#x27;char%&#x27;;
+SHOW VARIABLES LIKE &#x27;collation%&#x27;;</code></pre>
+<p id="30701e25-b209-4b2d-b069-9e2b427c1ed0" class="">Hasil kueri pertama akan mengkonfirmasi apakah Anda menggunakan kumpulan karakter <code>latin1</code> , <code>utf8</code> atau <code>utf8mb4</code> di MySQL. Hasil kueri kedua akan memberi informasi tentang pengaturan <em>collation</em> MySQL Anda. Koneksi MySQL dan pengaturan <em>collation</em> harus konsisten dengan kumpulan karakter <em>database</em> OJS Anda.</p><p id="30da13da-4469-4785-9b1b-9f84a3870331" class="">Misalnya, jika <em>database</em> OJS menggunakan kumpulan karakter <code>latin1</code>, maka Anda juga harus menggunakan <em>collation</em> yang kompatibel, misalnya <code>latin1_general_ci</code> atau <code>latin1_swedish_ci</code>. Alternatif lain, jika <em>database</em> OJS Anda menggunakan pengkodean karakter <code>utf8</code> yang lama, susunannya harus <code>utf8_general_ci</code> atau <code>utf8_unicode_ci</code>. Dan jika <em>database</em> OJS menggunakan kumpulan karakter <code>utf8mb4</code> yang lebih baru maka Anda harus menggunakan salah satu kumpulan karakter yang didukung untuk kumpulan karakter ini, misalnya. <code>utf8mb4_general_ci</code> atau <code>utf8mb4_0900_ai_ci</code>.</p>
+
+<h3 id="7d21cb69-8e62-407c-8ddc-b1aa2729e745" class="">Hapus Tabel Indeks Pencarian</h3>
+<p id="70b12763-4178-4bd4-80a6-7b92371048b0" class="">Tabel indeks pencarian OJS berisi banyak data dan data ini harus dihapus dari <em>database</em> OJS Anda sebelum memulai proses <em>upgrade</em> OJS 2.x. Hal ini akan mengurangi ukuran <em>database</em> OJS secara signifikan, mengurangi waktu untuk menjalankan langkah-langkah <em>upgrade</em> dan membuat <em>backup</em> instalasi OJS Anda. Setelah langkah terakhir <em>upgrade</em> ke OJS 3.3.0 selesai, indeks pencarian akan bekerja kembali, yang akan mengisi kembali tabel indeks pencarian pada <em>database</em> OJS Anda (tidak ada data yang akan hilang).</p><p id="f60fa67c-2b4b-4c28-973c-967b50040865" class="">Untuk menghapus data indeks pencarian dari <em>database</em> OJS Anda, Anda perlu terhubung ke <em>database </em>OJS dan menjalankan perintah kueri MySQL berikut:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f07c3940-0070-44fe-bbb2-7e953340f55d" class="code"><code class="language-SQL">TRUNCATE submission_search_objects;
+TRUNCATE submission_search_object_keywords;
+TRUNCATE submission_search_keyword_list;</code></pre>
+<h3 id="284e71af-f4a6-4446-b61d-f12c93688370" class="">Tentukan Mesin MySQL</h3>
+<p id="e69da377-2514-4fd7-8277-b944750c8243" class="">OJS 3.3.0 tidak dapat digunakan dengan mesin MySQL <code>MyISAM</code> dan memerlukan tabel <em>database</em> <code>InnoDB</code>. Untuk memeriksa apakah Anda perlu meng-konversi tabel <code>MyISAM</code> yang ada ke <code>InnoDB</code>, sambungkan ke <em>database</em> OJS Anda dan jalankan kueri berikut, ganti <code>OJS_DBNAME</code> dengan nama <em>database</em> OJS Anda:</p>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="9b7772d1-a5ef-4f93-8fb7-e4bbc4e263ba" class="code"><code class="language-SQL">SELECT DISTINCT Engine, COUNT(0) FROM information_schema.tables WHERE table_schema = &#x27;OJS_DBNAME&#x27;</code></pre>
+<p id="5355de6c-da40-457a-b348-df930613fbd5" class="">Jika kolom <code>Engine</code> dalam hasil kueri menyertakan <code>MyISAM</code> maka Anda perlu meng-konversi tabel <em>database</em> <code>MyISAM</code> ke <code>InnoDB</code> menggunakan alur kerja yang dijelaskan di bagian "Convert MyISAM to InnoDB Tables" di bawah. Sebaliknya, jika kolom <code>Engine</code> pada hasil kueri hanya menyertakan mesin <code>InnoDB</code> maka tidak diperlukan konversi tabel dan Anda dapat langsung melanjutkan ke bagian "Grant REFERENCES Privilege".</p><h3 id="8d554d1b-7c8b-4976-9bc4-04e411477d0a" class="">Konversi Tabel MyISAM ke InnoDB</h3>
+<p id="72764937-a9f4-4246-9d52-5d9e0c7b2f1f" class="">Alur kerja ini hanya perlu diselesaikan jika Anda telah meng-konfirmasi bahwa Anda memiliki satu atau lebih tabel <code>MyISAM</code> pada <em>database</em> OJS Anda. Untuk meng-konversi <em>database</em> OJS 2.x Anda dari tabel <code>MyISAM</code> ke tabel <code>InnoDB</code>, Anda perlu menyelesaikan langkah-langkah berikut:</p>
+<ol type="1" id="0ac7140b-bbf3-4b96-a5d8-8916dc3e0e6c" class="numbered-list" start="1"><li><em>Export</em> <em>database</em> OJS ke dalam file teks, mis. melalui <code>mysqldump</code></li></ol>
+<ol type="1" id="e858bc53-f665-40fc-a8dd-f3e281b4dcc1" class="numbered-list" start="2"><li>Buka file teks <em>dump database</em> menggunakan <em>text</em> <em>editor</em> yang kompatibel dengan UTF8, misalnya vi, nano atau <code>vi</code>.</li></ol><ol type="1" id="cdaa90c1-c803-4b94-b771-903792cf840d" class="numbered-list" start="3"><li>Ganti semua <code>MyISAM</code> dengan definisi tabel <code>InnoDB</code> pada <em>dump database</em></li></ol>
+<ol type="1" id="0c75b608-2900-4adf-9fdd-d233ba8fb4e6" class="numbered-list" start="4"><li>Simpan <em>text file</em> <em>dump database</em> yang terbaru</li></ol>
+<ol type="1" id="b53ef402-1efd-4f7b-8cfb-b2a6ae6dffd1" class="numbered-list" start="5"><li>Impor <em>dump database</em> yang terbaru ke <em>database</em> OJS yang baru</li></ol>
+<p id="321b747a-8088-47a4-b86b-8e8687a1fab1" class="">Alur kerja berikut menjelaskan setiap langkah di atas secara lebih detail.</p><p id="dfa0c05a-04fd-40d0-9910-27a691da0930" class="">Pertama, Anda perlu membuat <em>dump database</em> untuk database OJS dan menyimpannya ke <em>text</em> <em>file</em>, misalnya <code>ojs_database.sql</code></p>
+<p id="cdb0f912-ba1e-4d7e-9991-60f3a5c15c31" class="">Sekarang Anda dapat meng-konversi semua definisi tabel dalam file <em>dump database</em> menggunakan <em>text</em> <em>editor</em>. Misalnya, pada <em>text</em> <em>editor</em> <code>vi</code> Anda dapat membuka <em>dump database</em> MySQL dan menjalankan perintah <em>search-and-replace</em><em> </em>berikut. Tujuannya adalah untuk mengganti setiap definisi tabel MyISAM dengan mesin <code>InnoDB</code> untuk semua tabel <em>database</em> <code>MyISAM</code>. Anda akan diminta untuk me-<em>review</em> dan meng-konfirmasi setiap penggantian untuk setiap definisi tabel.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b095c483-f54e-4f42-883d-c2f451ea39b1" class="code"><code class="language-Plain Text">:%s/ENGINE=MyISAM/ENGINE=InnoDB/gc</code></pre><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="25e6da8a-4747-4c95-a4e8-9831c214f0d6">
+<div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Jangan lupa untuk menyimpan file dump database yang telah diperbarui.</div></figure>
+<p id="c1f381a2-195b-427d-8806-6c99b0e2205e" class="">Langkah selanjutnya adalah menghapus <em>database</em> OJS Anda di MySQL karena masih berisi table definition <code>MyISAM</code> yang lama. Kita kemudian akan membuat <em>database</em> OJS baru untuk menerima tabel definition <code>InnoDB</code> yang diperbarui dan melakukan <em>import</em> file <em>dump database</em> yang dikonversi ke <em>database</em> OJS yang baru.</p>
+<p id="421b9d8e-76ce-4d70-b5c1-17ae3748c403" class="">Untuk menghapus <em>database</em> OJS yang ada dan membuat <em>database</em> OJS baru yang kosong, perintah MySQL berikut perlu dijalankan menggunakan akun pengguna MySQL dengan hak Istimewa (<em>privilege</em>) <code>DROP</code> dan <code>CREATE</code>, misalnya. baik pengguna OJS MySQL atau pengguna <em>root</em> MySQL.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="542b09a3-3f37-46c5-89ee-e2201e24287e"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong>Penting</strong>: Pastikan Anda memiliki backup database OJS Anda sebelum menjalankan perintah MySQL di bawah ini.</div></figure><p id="e68249e2-a28f-4636-8f1a-6f3bf115e3b1" class="">Anda perlu mengganti nama <em>database</em> <code>OJS_DBNAME</code> dan character set <code>OJS_DBCHARSET</code> dengan yang sebenarnya, contoh kueri yang digunakan:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6cedca53-7378-4b23-9221-3158f3308559" class="code"><code class="language-SQL">DROP DATABASE OJS_DBNAME;
+CREATE DATABASE OJS_DBNAME DEFAULT CHARSET &#x27;OJS_DBCHARSET&#x27;;</code></pre>
+<p id="f4216def-297a-443e-9d15-063d3e881d0a" class="">Sekarang Anda memiliki <em>database</em> OJS baru yang kosong, Anda dapat meng-<em>import</em> data pada <em>database</em> OJS menggunakan file <em>dump database</em> MySQL yang diperbarui termasuk table definitions <code>InnoDB</code> yang baru.</p>
+<p id="f63aadcf-84e0-4f6e-bc7a-a830b37b71b0" class="">Untuk perintah impor MySQL di bawah ini, Anda perlu mengganti pengaturan koneksi <em>database</em> <code>OJS_DBNAME</code> dan <code>OJS_DBUSER</code>, pengaturan <em>character set</em> <code>OJS_DBCHARSET</code>, dan nama file <em>dump database</em> <code>OJS_DBDUMPFILE</code> dengan nilai sebenarnya: </p>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6cd23853-f4d8-495e-b272-0c11fb1389b2" class="code"><code class="language-Shell">mysql OJS_DBNAME -u OJS_DBUSER -p --default-character-set=OJS_DBCHARSET &lt; OJS_DBDUMPFILE</code></pre><p id="ed768702-af7e-40cd-ae5e-a88fc6ba56e4" class="">Anda akan diminta <em>password</em> <em>database</em> untuk pengguna OJS MySQL seperti yang ditentukan dalam file OJS <code>config.inc.php</code> pada line <em>database</em> Anda. Hal ini tergantung pada ukuran <em>database</em> OJS Anda, perintah <em>import</em> mungkin memerlukan waktu yang lama untuk selesai, misalnya. hingga 1 jam atau lebih untuk <em>database</em> yang sangat besar.</p>
+
+<h3 id="409e7e7d-d7b1-4191-b019-c98223f9026f" class="">Berikan REFERENCE Hak Istimewa (Privilege)</h3><p id="73d70ce5-9acd-4209-a28e-f79fe9d23c62" class="">Pengguna <em>database</em> OJS akan memerlukan hak Istimewa (<em>privilege</em>) <code>REFERENCES</code> yang diberikan melalui MySQL sebagai persiapan untuk <em>upgrade</em> ke OJS 3.3.0.</p>
+<p id="5b3d1158-30db-44c3-8e16-bde53609df95" class="">Perintah MySQL di bawah ini perlu dijalankan dengan menggunakan akun pengguna MySQL dengan hak Istimewa (<em>privilege</em>) <code>GRANT</code>, misalnya. akun pengguna root MySQL. Anda perlu mengganti <code>OJS_DBNAME</code>, <code>OJS_DBUSER</code>, dan <code>OJS_DBPASSWD</code> dengan nilai untuk <em>database</em> OJS Anda seperti yang ditentukan di <code>config.inc.php</code>:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2ed9a511-dd26-465a-9d3e-ac78d7eac8d9" class="code"><code class="language-SQL">GRANT REFERENCES ON OJS_DBNAME.* TO OJS_DBUSER@&#x27;localhost&#x27; IDENTIFIED BY &#x27;OJS_DBPASSWD&#x27;;</code></pre>
+<h2 id="ee6cc396-5425-4db4-8d1a-7a007b4fed66" class="">Tahapan Persiapan</h2>
+<p id="279094bd-80ec-4e01-a3ad-300a323d44a8" class="">Sebelum melanjutkan ke langkah <em>upgrade</em> yang pertama, hal-hal berikut harus diselesaikan terlebih dahulu:</p><ul id="9bbb1bc3-3639-451c-9537-3f1ce37890c9" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><em>Backup</em> segala komponen yang menjalankan OJS 2 antara lain <em>web root</em> OJS 2.x contoh <em>folder</em> <em>files</em>, folder public_html (public), dan <em>database</em> OJS MySQL</span><div class="indented"></div></li></ul><ul id="31878da9-f7a1-41a4-985c-46361f3b4912" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Tentukan kumpulan karakter <em>database</em> OJS MySQL dan pengaturan susunannya</span><div class="indented"></div></li></ul><ul id="0727e1e9-d623-44bb-b143-a91fe0020fe0" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Hapus data indeks pencarian dari <em>database</em> OJS MySQL</span><div class="indented"></div></li></ul><ul id="66e6f1ad-2b8a-4c10-b3eb-d4e85bdc0b65" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Pastikan semua tabel menggunakan mesin InnoDB pada <em>database</em> OJS MySQL</span><div class="indented"></div></li></ul><ul id="abb443fb-86b3-4a5f-9851-822c509d9dfd" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Berikan hak Istimewa (<em>privilege</em>) pada REFERENCE kepada pengguna <em>database</em> OJS MySQL</span><div class="indented"></div></li></ul>
+<h2 id="3d2328a1-1d1d-471c-a3bc-eb2a84457bc2" class="">Langkah Pertama: Masuk ke OJS 2.4.8-5</h2><p id="a654e69d-cb34-4385-b756-1f2d0c44798e" class="">Jika instalasi Anda menjalankan versi yang lebih lama dari OJS 2.4.6 maka Anda harus melakukan <em>upgrade</em><em> </em>terlebih dahulu ke OJS 2.4.6. Versi yang lebih lama dari OJS tersebut tidak memiliki kolom wajib pada tabel <code>sessions</code> dan <em>upgrade</em> ke OJS 2.4.6 akan menambahkan kolom yang belum tersedia ini.</p><p id="d7460d6f-9ad4-4efc-80a5-9485bdc94ca1" class="">Jika instalasi Anda menjalankan OJS 2.4.6 atau versi yang lebih baru, Anda perlu melakukan <em>upgrade</em> ke OJS 2.4.8-5. <em>Upgrade</em> ini perlu dijalankan menggunakan versi lama PHP 7.x (PHP 8.x tidak akan berfungsi)</p><h2 id="eb8ca215-b40f-4b75-9c2d-bced116721b6" class="">Skenario 1 versi yang direkomendasikan: OJS 3.2.1-5</h2><p id="6f8d79f1-2321-4f5b-af7f-d89cb02199f9" class="">Setelah instalasi Anda menjalankan OJS 2.4.8-5, Anda siap untuk beralih ke OJS 3.2.1-5.</p><p id="6acb8f32-d719-4386-bd8a-a99f9e6c7f87" class="">Jika jurnal Anda menerbitkan gambar sampul artikel, pastikan Anda menerapkan <a href="https://github.com/pkp/ojs/commit/c3a936bf25fe5e07f01b9a0b30d0d1867cbd1875.diff">patch ini</a> pada instalasi OJS 3.2.1-5 Anda, jika Anda menerapkannya melalui <a href="https://pkp.sfu.ca/ojs/download/ojs-3.2.1-5.tar.gz">the release tarball</a>. <em>Patch</em> ini ditambahkan setelah OJS 3.2.1-5 dirilis dan memberikan perbaikan untuk <em>bug</em> <em>upgrade</em> OJS 2.x di dalam <em>issue</em> berkaitan dengan gambar sampul artikel.</p><p id="f4b96ba8-6131-4e83-9397-2a3f38008738" class="">Sebelum Anda memulai <em>upgrade</em> ke OJS 3.2.1-5, Anda perlu me-<em>review</em> file tambahan OJS 2.4.8-5 Anda.</p><h3 id="8491224c-9c79-448b-882c-c0701eb583d7" class="">File Tambahan: Submission Files atau Public Galleys?</h3><p class="">Pastikan Kembali isi dari folder files, apakah terdapat file tambahan yang berisi file <em>submission</em> atau <em>public</em> galleys?</p>
+<p class="">Dalam persiapan untuk <em>upgrade</em> OJS 3.2.1-5, Anda perlu memutuskan bagaimana <em>file</em> tambahan (<em>supplement files</em>) harus dimigrasi dari OJS 2.4.8-5. Secara <em>default</em>, <em>upgrade</em> OJS 3.2.1-5 akan mengubah semua file tambahan menjadi artikel galleys yang dapat diakses oleh pembaca melalui <em>landing page</em> artikel.</p>
+<p id="b8b97040-2dfb-463f-b66f-0e9c4f15e063" class="">Hal ini tergantung bagaimana editor dan penulis menggunakan file tambahan di OJS 2.x, konversi ke artikel galleys ini mungkin tidak sesuai atau cocok untuk jurnal Anda. Misalnya, beberapa jurnal yang menjalankan OJS 2.x menggunakan file tambahan untuk menyimpan <em>Letter of Agreement</em> (LOA), <em>copyright transfer form</em>, dan lain-lain — dokumen-dokumen ini dianggap pribadi dan tidak diberikan untuk akses publik. Pada OJS 2.x, jika jurnal me-nonaktifkan fitur <em>Reading Tools</em>, maka link ke file tambahan akan dikeluarkan dari <em>landing page</em> artikel.</p>
+<p>Jika Anda ingin me-nonaktifkan konversi file tambahan ke public galleys selama proses <em>upgrade</em> ke OJS 3.2.1-5, dan sebagai gantinya meng-konversi file tambahan menjadi file <em>private submission</em> di OJS 3.2.1-5, maka Anda perlu <a href="https://github.com/jonasraoni/supplementary-files-as-submission-files">apply a patch</a> pada instalasi OJS tersebut sebelum memulai <em>upgrade</em> dari OJS 2.4.8-5.</p>
+<p>Setelah <em>upgrade</em> ke OJS 3.2.1-5 selesai, harap <em>review</em> contoh artikel yang termasuk file tambahan untuk memastikan bahwa file ini telah dimigrasi dengan benar dari OJS 2.4.8-5, untuk memastikan bahwa file tambahan bersifat publik terlihat sebagai artikel galleys atau dibatasi dari akses publik dan disimpan sebagai file <em>p</em><em>rivate submission</em> pada OJS 3.2.1-5.</p>
+<h2 id="83b31e68-1b55-408c-bfa6-40ab70b18c1f" class="">Langkah Terakhir: OJS 3.3.0</h2>
+<p>Setelah Anda berhasil melakukan <em>upgrade</em> ke OJS 3.2.1-5 maka Anda dapat melakukan <em>upgrade</em> ke OJS 3.3.0 terbaru yang sudah termasuk <a href="https://pkp.sfu.ca/2022/02/15/pkp-announces-long-term-support-lts-software-releases/">long-term support</a> dari PKP.</p>
+<p>Secara umum, <em>upgrade</em> dari OJS 3.2.1 ke OJS 3.3.0 akan selesai lebih cepat karena tidak ada <em>update</em> pada folder <em>private files</em> OJS dimana file <em>submission</em> dan file galley disimpan.</p>
+<h3 id="b1620077-2ced-4640-bac7-321f70785dc9" class="">Pembangunan Ulang Indeks Pencarian</h3><p id="6183b67c-13c7-427a-9976-6c78f1ed9caf" class="">Karena kita sudah menghapus data indeks pencarian OJS sebelum memulai alur kerja <em>upgrade</em>, sekarang kita perlu menjalankan kembali indeks pencarian melalui perintah PHP berikut, yang dijalankan di folder OJS sebagai peran <em>root access</em>:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="646af436-f3b9-4c03-8f24-f3083a5f9b59" class="code"><code class="language-PHP">php tools/rebuildSearchIndex.php</code></pre><h2 id="e1ba7e7c-fd98-4c34-8a03-6da1d678723a" class="">Mengatasi Masalah Umum</h2><h3 id="f806db5b-0bd8-4768-a498-177eda6d6433" class="">Error Versi Plugin</h3><ul id="1b441546-ffdd-435e-813c-50f504cb2204" class="bulleted-list"><li style="list-style-type:disc">Masalah: Langkah terakhir dalam <em>upgrade</em>, <code>addPluginVersions</code>, akan gagal jika ada plugin pada folder plugin OJS yang tidak sinkron dengan versi plugin di <em>database</em>. Jika versi plugin di folder plugins lebih lama dari versi plugin yang tercatat di <em>database</em>, kode skrip <em>upgrade</em> OJS akan menyampaikan notifikasi <em>error</em> "Cannot Downgrade Plugin".</li></ul><ul id="1a05f42b-bfd0-4172-a3b9-2dfbd9cfeb9d" class="bulleted-list"><li style="list-style-type:disc">Solusi: Karena update versi plugin adalah langkah terakhir dalam proses kode skrip <em>upgrade</em> OJS, <em>error</em> di atas menunjukkan bahwa proses <em>upgrade</em> OJS telah selesai dengan pengecualian pada pemeriksaan versi plugin yang terbaru. Pada tahap ini Anda dapat melanjutkan dengan salah satu dari dua cara berikut:<ol type="i" id="20bd3a8e-3123-4153-a4ec-c1017425f437" class="numbered-list" start="1"><li>Perbarui tabel <code>versions</code> OJS secara manual dan sisipkan baris baru untuk versi OJS 3.3.0, pastikan Anda menandai versi OJS ini sebagai versi saat ini. Langkah Ini akan menyelesaikan <em>upgrade</em> ke OJS 3.3.0 secara manual.<br/><br/>Anda dapat melakukan hal ini dengan menjalankan dua kueri MySQL berikut:<br/><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="49340ced-a8cb-4e19-afc3-3b322498fbe0" class="code"><code class="language-SQL">UPDATE versions SET current = &#x27;0&#x27; WHERE product = ‘ojs2’;</code></pre><p id="5fd1f43d-1a6f-422d-aa4c-9012e0b2174b" class="">Pada kueri MySQL di bawah ini, harap sesuaikan keempat parameter versi OJS agar sesuai dengan versi sebenarnya yang Anda <em>upgrade</em>. Kueri di bawah ini diasumsikan sebagai OJS 3.3.0-17.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c3079636-bb63-45e9-99b6-8127828c800c" class="code"><code class="language-SQL">INSERT INTO versions VALUES (&#x27;3&#x27;, &#x27;3&#x27;, &#x27;0&#x27;, &#x27;17&#x27;, now(), &#x27;1&#x27;, &#x27;core&#x27;, &#x27;ojs2&#x27;, &#x27;&#x27;, &#x27;0&#x27;, &#x27;1&#x27;);</code></pre><p id="43755b36-e62f-43b4-8ce5-33a2b9a049b2" class="">Setelah tabel <code>versions</code> di-<em>update</em> secara manual, Anda dapat menghapus plugin tertentu yang menyebabkan <em>error</em> dari folder plugin OJS dan kemudian meng-instal ulang plugin secara manual sebagai Journal Manager melalui Plugin Gallery OJS. Selain itu, semua plugin lain yang ditandai sebagai tersedia untuk di-<em>upgrade</em> pada Plugin Gallery, harus di-<em>upgrade</em> melalui Plugin Gallery ke versi plugin terbaru yang kompatibel dengan OJS 3.3.0.</p></li></ol><ol type="i" id="65c64ffc-eeb5-4a2d-9865-d68287fb5214" class="numbered-list" start="2"><li>Alternatif lain, Anda dapat menghapus plugin khusus yang menyebabkan <em>e</em><em>r</em><em>ror</em> dari folder OJS plugins, mengembalikan instalasi Anda ke OJS 3.2.1 (<em>restore</em>) dengan menggunakan <em>backup</em> pre-<em>upgrade</em>, dan lakukan kembali <em>upgrade</em> 3.3.0. Tergantung pada bagaimana plugins menyebabkan <em>er</em><em>r</em><em>or</em> pada proses <em>upgrade</em>, Anda mungkin harus mengulangi tahap ini beberapa kali.  Setelah <em>upgrade</em> ke OJS 3.3.0 berhasil diselesaikan, Anda perlu meng-instal secara manual semua plugin yang dihapus dari folder plugin OJS sebagai Journal Manager melalui Plugin Gallery OJS. Selain itu, semua plugin lain yang ditandai sebagai plugin yang tersedia untuk di-<em>upgrade</em> di Plugin Gallery harus di-<em>upgrade</em> ke versi terbaru yang kompatibel dengan OJS 3.3.0.</li></ol></li></ul><h3 id="90176221-7744-459b-b005-d689152abba2" class="">Notifikasi Null Review Round ID</h3><ul id="92fc90d8-4cec-4ade-b7d0-cff0e0423b88" class="bulleted-list"><li style="list-style-type:disc">Masalah: <em>Upgrade</em> dari OJS 3.2.1 ke OJS 3.3.0 gagal karena null <code>review_round_ids</code> pada tabel <code>review_assignments</code>.</li></ul><ul id="a718eaa8-cd16-4f7f-bfa5-d1758978e119" class="bulleted-list"><li style="list-style-type:disc">Solusi: Pertama, kembalikan instalasi Anda ke OJS 3.2.1 dengan menggunakan <em>backup</em> pra-<em>upgrade</em> (<em>restore</em>) Anda. Setelah <em>database</em> di-<em>restore</em>, jalankan kueri <code>UPDATE</code> berikut di MySQL untuk mengatur <code>review_round_id</code> secara manual pada tabel <code>review_assignments</code>:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5b612ea6-fe34-4282-88f4-dd77369edfe8" class="code"><code class="language-SQL">UPDATE review_assignments, review_rounds SET review_assignments.review_round_id = review_rounds.review_round_id WHERE review_assignments.submission_id = review_rounds.submission_id AND review_assignments.round = review_rounds.round;</code></pre><p id="3dbd5ba3-c1e9-4fcf-9f29-e2c37217afce" class="">Dengan mengikuti <code>UPDATE</code> di atas, Anda dapat memeriksa apakah masih ada kolom null <code>review_round_id</code> yang tersisa melalui kueri <code>SELECT</code> berikut:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b40f56a1-abec-449c-9676-ee9e20bc9a40" class="code"><code class="language-SQL">SELECT * FROM review_assignments WHERE review_round_id IS NULL;</code></pre><p id="47c85d17-4b15-4b2a-9fd3-53b7101a6e36" class="">Jika kueri di atas mengembalikan satu baris atau lebih maka Anda perlu memeriksa setiap baris secara manual dan menentukan apakah baris tersebut sesuai dengan <em>submission</em> yang valid pada instalasi OJS Anda. Jika tidak, maka baris null dapat dihapus dari tabel <code>review_assignments</code>.</p></li></ul><h3 id="b21e1d4c-d32c-4330-b5b2-4a7dbc3d12ce" class="">TinyMCE</h3><ul id="04173f02-3ac6-4626-863d-b4626144f9b7" class="bulleted-list"><li style="list-style-type:disc">Masalah: Kadang-kadang plugin TinyMCE tidak dapat di-instal atau diaktifkan setelah <em>upgrade</em>. Hal ini menyebabkan notifikasi <em>er</em><em>r</em><em>or</em> "API Key Missing" saat melihat <em>dashboard</em> OJS 3.x, serta formulir input dan <em>setting</em> tidak dapat digunakan.</li></ul><ul id="a2414d7d-d726-4ad0-b35b-cc0a6eb4c18d" class="bulleted-list"><li style="list-style-type:disc">Solusi: Pada ​​OJS 3.x, sebagai Journal Manager, aktifkan plugin TinyMCE melalui Settings &gt; Website &gt; Plugin.</li></ul><h3 id="a138b173-05e9-47c6-9817-2f7bbae33f82" class="">Pengaturan Bahasa</h3><ul id="e1c41351-15ea-48f2-9d52-036aa26fb5ff" class="bulleted-list"><li style="list-style-type:disc">Masalah: Terkadang jurnal tidak dapat meng-<em>upgrade</em>/memindahkan pengaturan bahasa yang di-instalnya (pengaturan UI, bahasa <em>submission</em>, pengaturan bahasa metadata). Pada OJS 3.x, hal ini dapat dilihat jika Anda membuka <em>dashboard</em> sebagai Journal Manager atau Editor — banyak tab yang tidak memiliki formulir input dan <em>setting</em>.</li></ul><ul id="075128f4-eb8f-428f-b1a9-6bca3615cb09" class="bulleted-list"><li style="list-style-type:disc">Solusi: Pada ​​OJS 3.x, sebagai Journal Manager, aktifkan beberapa bahasa jurnal yang biasa dipakai misalnya English dan Indonesia melalui Settings  &gt; Journal &gt; Language.</li></ul><h3 id="9ac56f37-9779-4ea4-8e5b-a15642f46015" class="">Masalah Pengkodean Karakter Database</h3><ul id="acbf7bf3-2b63-4c59-983b-e35763bc83c0" class="bulleted-list"><li style="list-style-type:disc">Masalah: <em>Database</em> OJS menyertakan campuran tabel Latin1 dan UTF8 atau tabel Latin1 dengan data UTF8 yang mengakibatkan <em>error</em> pada tampilan dengan karakter beraksen pada <em>homepage</em> jurnal, halaman artikel, atau pada hasil pencarian.</li></ul><ul id="478989c9-ab5f-4297-8598-aef74cbbe242" class="bulleted-list"><li style="list-style-type:disc">Solusi: Anda perlu me-<em>review</em> <em>database</em> OJS Anda untuk mengidentifikasi sumber <em>error</em> dan memperbaiki <em>database</em> Anda untuk memastikan bahwa Anda memiliki konsistensi pada seluruh pengkodean karakter, <em>collation</em>, dan data yang disimpan. <em>Review</em> bagian Panduan <a href="https://docs.pkp.sfu.ca/admin-guide/en/troubleshooting#character-encoding">Character Encoding section pada PKP Docs troubleshooting</a>.</li></ul><h3 id="71b55b14-1ca1-455a-88f7-18a43b1534d7" class="">Error Foreign Key MySQL</h3><ul id="c835b3a6-6e6a-4937-92b7-41d2bb78197b" class="bulleted-list"><li style="list-style-type:disc">Masalah: Kueri MySQL gagal dengan <em>er</em><em>r</em><em>or</em> foreign key.</li></ul><ul id="2c76ce75-3408-4fd6-a85f-f901168e4749" class="bulleted-list"><li style="list-style-type:disc">Solusi: OJS 3.3.0 memerlukan tabel <em>database</em> <code>InnoDB</code>. Jika <em>database</em> MySQL Anda menggunakan tabel <code>MyISAM</code>, Anda perlu meng-konversi tabel tersebut ke <code>InnoDB</code> sebelum menjalankan <em>upgrade</em> ke OJS 3.3.0. Silakan lihat bagian "Convert MyISAM ke InnoDB Tables" untuk informasi tambahan.</li></ul><h3 id="4f714c9c-a2b5-468b-a518-c206ead22abf" class="">Error Hak Istimewa (privilege) MySQL</h3><ul id="72d85357-aa88-4206-a2f2-b9610085f659" class="bulleted-list"><li style="list-style-type:disc">Masalah: Kueri MySQL gagal dengan <em>error</em> izin referensi (<em>reference permission</em>).</li></ul><ul id="f5356005-91c1-44a7-9ec9-f731afd8f4cf" class="bulleted-list"><li style="list-style-type:disc">Solusi: Akun pengguna <em>database</em> OJS memerlukan hak Istimewa (privilege) <code>REFERENCES</code> yang diberikan sebagai persiapan untuk <em>upgrade</em> dari 3.2.1 ke 3.3.0. Silakan lihat bagian "Grant REFERENCES Privilege" untuk informasi tambahan.</li></ul><h2 id="1f4a17ae-a161-40eb-aeca-e667eeb7366a" class="">Sumber Informasi tambahan</h2><p id="41ca4331-141a-439f-8385-9a7b201f49ca" class="">Jika Anda menemukan permasalahan yang tidak tercakup dalam panduan ini, Anda dapat mencari jawaban dan mendapatkan saran untuk menyelesaikan masalah Anda melalui <a href="https://forum.pkp.sfu.ca/">PKP Forum</a> yang disampaikan oleh komunitas pengguna OJS global dan staf PKP. Jika Anda tidak mendapatkan hasil pencarian yang Anda inginkan, kirimkan pertanyaan dan laporkan permasalahan Anda ke forum tersebut.</p><p id="6034fa6f-e904-41b6-8166-c875a07b25e8" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

@@ -1,17 +1,22 @@
 ---
 generateHeadingToc: true
 title: How to Upgrade
-description: How to upgrade Open Journal Systems (OJS) and other PKP software, including a step-by-step tutorial.
+description: How to upgrade Open Journal Systems (OJS), Open Monograph Press (OMP), and Open Preprint Systems (OPS), including a step-by-step tutorial.
 ---
 
-# How to Upgrade
+# Introduction: How to Upgrade
+
+This guide will help you upgrade Open Journal Systems (OJS), Open Monograph Press (OMP), and Open Preprint Systems. It describes the knowledge and tools you will need to upgrade your software, and provides a step-by-step tutorial you can follow.
+
+The instructions below describe how to upgrade on a LAMP (Linux, Apache, MySQL, PHP) stack. However, these steps can be adapted for different server environments.
 
 > Want to know when new versions are released and what's new? Read the [announcements forum](https://forum.pkp.sfu.ca/c/announcements/10).
 {:.notice}
 
-This guide will help you upgrade Open Journal Systems (OJS). It describes the knowledge and tools you will need to upgrade your software, and provides a step-by-step tutorial you can follow.
+## Contributors
 
-The instructions below describe how to upgrade OJS when it is running on a LAMP (Linux, Apache, MySQL, PHP) stack. However, these steps can be adapted to upgrade other PKP software (OMP, OPS) as well as perform upgrades in different server environments.
+Authors:
+Marc Bria, Clinton Graham, Kaitlin Newson, Andrea Pritt, Dulip Withanage, Alec Smecher
 
 ## Required Knowledge and Tools
 
@@ -24,11 +29,10 @@ In order to use this guide, you will need experience with basic system administr
 - Server credentials, including database credentials
 - Knowledge of your server stack (this guide assumes a LAMP stack)
 - The ability to access your server's terminal (SSH)
-- An identified OJS release package to upgrade to (downloaded in step 5)
 
 ### Preparing to Upgrade
 
-Before starting your upgrade, you can review `docs/release-notes` and the [release notebook](/dev/release-notebooks/) for your upgrade version to learn about important changes introduced in each version. The `config.TEMPLATE.inc.php` includes a description for most configuration parameters.
+Before starting your upgrade, you can review the release notes in `docs/release-notes` and the [release notebook](/dev/release-notebooks/) for your upgrade version to learn about important changes introduced in each version. The configuration file template, `config.TEMPLATE.inc.php`, includes a description for most configuration parameters.
 
 Note that an upgrade may take from a few minutes up to several hours depending on the size of your site.
 
@@ -47,19 +51,31 @@ In order to understand the upgrade process, you should first determine the size 
 
 You should always perform upgrades in a test environment first, even when upgrading from one build to another.
 
-### Upgrading from 2.x
+### Upgrading from OJS 2.x to 3.x
 
-It is not always possible to upgrade from 2.x to any version of 3.x. When performing upgrades from a 2.x version, you should first upgrade to in-between versions. The table below describes the necessary steps.
+OJS 2.x is extremely out of date and direct upgrades to the latest OJS releases are no longer supported. If you are running OJS 2.x and wish to upgrade, you will need to do it in steps:
 
 | From      | To        | Description                                                                        |
 | --------- | --------- | ---------------------------------------------------------------------------------- |
 | `< 2.4.8` | `2.4.8-x` | Before upgrading to 3.x, make sure you are upgraded to the latest `2.4.8-x` build. |
-| `2.4.8-x` | `3.2.1-x` | You can not upgrade to 3.3.x or later from 2.x                                     |
-| `3.2.1-x` | `3.3 >=`  | Upgrade from `3.2.1-x` to any version 3.3 or later.                                |
+| `2.4.8-x` | `3.2.1-x` | `2.4.8-x` can be upgraded to `3.2.1-x`.                                            |
+| `3.2.1-x` | `3.3 >=`  | `3.2.1-x` can be upgraded to any version 3.3 or later.                             |
+
+## Components of an Installation
+
+Any OJS, OMP, or OPS installation has the following components:
+
+1. **Software.** This is the source code that you download and unpack from the PKP website. This lives in the *installation directory*.
+2. **Configuration file.** This is called `config.inc.php` and lives in the *installation directory*.
+3. **Files directory.** This is where the software stores uploaded files such as word processor documents, PDFs, etc. Its location is given in the *configuration file* in the `files_dir` setting. **It should never be web-accessible.**
+4. **Public files directory.** This is where publicly-accessible files such as logos are stored. It is the `public` subdirectory inside the *installation directory*.
+5. **Database.** This is the MySQL or PostgreSQL database used by the software to store metadata etc. It is configured in the *configuration file*.
+
+A backup, restore, or upgrade operation must consider all of these parts of the installation.
 
 ## Upgrade Tutorial
 
-The following tutorial provides a recommended step-by-step process to safely upgrade OJS. However, each installation is different and your server environment might differ substantially. In all cases, you should review and understand the commands before executing them.
+The following tutorial provides a recommended step-by-step process to safely upgrade. However, each installation is different and your server environment might differ substantially. In all cases, you should review and understand the commands before executing them.
 
 During the tutorial, you will see commands for [Debian](https://www.debian.org/) or [RHEL](https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux) Linux systems. You should only run the command appropriate to your server.
 
@@ -71,7 +87,6 @@ The tutorial below uses the following variables to simplify the terminal command
 | --------------- | ------------------- | -------------------------------- |
 | WEB_USER        | `www-data`          | Webserver user                   |
 | WEB_GROUP       | `www-data`          | Webserver user's group           |
-| OJS_ROOT_PATH   | `/var/www`          | OJS root folder                  |
 | OJS_WEB_PATH    | `/var/www/html`     | OJS web root folder              |
 | OJS_DB_HOST     | `db`                | Database host's name             |
 | OJS_DB_USER     | `ojs`               | Database user                    |
@@ -86,7 +101,6 @@ Rewrite the command below to set up these variables with the correct values for 
 ```bash
 $ WEB_USER="www-data" && \
 WEB_GROUP="www-data" && \
-OJS_ROOT_PATH="/var/www" && \
 OJS_WEB_PATH="/var/www/html" && \
 OJS_DB_HOST="db" && \
 OJS_DB_USER="ojs" && \
@@ -95,18 +109,32 @@ OJS_DB_NAME="ojs" && \
 OJS_BACKUP_PATH="/srv/backup/ojs" && \
 OJS_VERSION="ojs-3.3.0-8" && \
 OJS_PUBLIC_PATH="$OJS_WEB_PATH/public" && \
-OJS_PRIVATE_PATH="$OJS_ROOT_PATH/files" && \
+OJS_PRIVATE_PATH="/var/www/files" && \
 DATE=$(date "+%Y%m%d-%H:%M:%S")
 ```
 
-### 2. Enter Maintenance Mode
+### 2. Disable the execution of background tasks
 
-Before beginning the migration, you should put the site into maintenance mode to ensure that visitors do not see error messages and there are no changes to the database or files while backups are being made. Maintenance mode should prevent all requests from being sent to the application.
+#### Shut down the execution of scheduled tasks
+
+If you're using a `CRON`-like application to execute the `php tools/runScheduledTasks.php` periodically, please disable it. If you're using the `Acron` plugin, then disable the plugin.
+
+After disabling, it's better to ensure that all tasks had a time to be completed, you can inspect the database, more specifically the `scheduled_tasks` table, and ensure that the `last_run` field of all entries points to a date slightly in the past (a couple of hours should suffice to execute everything).
+
+#### Shut down the worker gracefully (only applicable for OJS +3.4)
+
+Version 3.4 introduced Laravel jobs to process long running tasks, as explained in the [admin-guide](/admin-guide/en/deploy-jobs). If you've configured this feature, you'll need to stop it gracefully before starting the upgrade.
+
+The worker can be gracefully interrupted by sending a `SIGTERM` signal to the PHP process running it. This can be done using the `kill` CLI command. If you're using a `supervisor`-like application to manage the worker, please refer to its documentation.
+
+### 3. Preventing Access
+
+Before beginning the upgrade, you should ensure that visitors do not interact with the installation while you are working.
 
 > OJS does not support a maintenance mode yet, but we [plan to support it](https://github.com/pkp/pkp-lib/issues/3263).
 {:.notice}
 
-Modify your Apache `VirtualHost` directive or place an `.htaccess` file in the `OJS_WEB_PATH` with the following content.
+Modify your Apache `VirtualHost` directive or place an `.htaccess` file in the `OJS_WEB_PATH` with the following content:
 
 ```bash
 order deny,allow
@@ -114,7 +142,7 @@ deny from all
 ErrorDocument 403 "This site is undergoing maintenance and should return shortly. Thank you for your patience."
 ```
 
-Reload the apache server to apply the changes:
+If you modified your Apache configuration, you will have to reload it:
 
 ```bash
 (Debian)$ service apache2 reload
@@ -122,7 +150,7 @@ Reload the apache server to apply the changes:
 (RHEL)$ systemctl restart httpd
 ```
 
-### 3. Create Backups
+### 4. Create Backups
 
 > **Do not skip this step.** An upgrade can fail for many reasons. Without a backup you may permanently lose data.
 {:.warning}
@@ -157,12 +185,12 @@ $ tar cvzf "$OJS_BACKUP_PATH/private-$DATE.tgz" "$OJS_PRIVATE_PATH"
 Backup the public files directory.
 
 ```bash
-$ tar cvzf "$OJS_BACKUP_PATH/ojsfiles-$DATE.tgz" "$OJS_WEB_PATH"
+$ tar cvzf "$OJS_BACKUP_PATH/ojsfiles-$DATE.tgz" "$OJS_PUBLIC_PATH"
 ```
 
 Backup any other customizations you have made to the software, such as custom plugins or locale files.
 
-### 4. Create Sandbox
+### 5. Create Sandbox
 
 Use your backup to create a sandbox environment and test the upgrade in that sandbox first. The steps below can be used in your sandbox environment to perform an upgrade.
 
@@ -170,16 +198,15 @@ Once the test is complete, you can run any automated or manual tests you have co
 
 **Only perform the next steps on your live, production environment if you have already completed a test upgrade in your sandbox environment.**
 
-### 5. Download Release Package
+### 6. Download Release Package
 
 Download the correct release package.
 
 ```bash
-$ cd "$OJS_ROOT_PATH"
 $ wget "https://pkp.sfu.ca/ojs/download/$OJS_VERSION.tar.gz"
 ```
 
-### 6. Check System Requirements
+### 7. Check System Requirements
 
 Check the [README](https://pkp.sfu.ca/ojs/README) file from the downloaded `tar.gz` and be sure your system meets the following requirements.
 
@@ -193,7 +220,7 @@ In addition, you will want to perform the following checks.
 - Adjust your PHP timeouts and memory limits to ensure the upgrade process can complete successfully.
 - Check the server libraries and module requirements for any plugins you've added (these can often be found in the plugin's README file).
 
-### 7. Install Release Package
+### 8. Install Release Package
 
 Backup the application files.
 
@@ -205,7 +232,7 @@ Extract the release package.
 
 ```bash
 $ mkdir "$OJS_WEB_PATH"
-$ tar -xvz --strip-components=1 "$OJS_VERSION.tar.gz" -C "$OJS_WEB_PATH"
+$ tar --strip-components=1 -xvzf "$OJS_VERSION.tar.gz" -C "$OJS_WEB_PATH"
 ```
 
 Restore the `config.inc.php` file.
@@ -217,7 +244,7 @@ $ cp "$OJS_BACKUP_PATH/html/config.inc.php" "$OJS_WEB_PATH"
 Run the following command to compare your configuration file with the template of the new release. Add or remove any configuration options as necessary.
 
 ```bash
-$ diff "$OJS_BACKUP_PATH/config.inc.php" "$OJS_WEB_PATH/config.TEMPLATE.inc.php"
+$ diff "$OJS_WEB_PATH/config.inc.php" "$OJS_WEB_PATH/config.TEMPLATE.inc.php"
 ```
 
 Restore the `.htaccess` file if it exists.
@@ -254,7 +281,7 @@ If the server is running under [SElinux](https://en.wikipedia.org/wiki/Security-
 (RHEL)$ sudo restorecon -R "$OJS_WEB_PATH/"
 ```
 
-### 8. Run the Upgrade
+### 9. Run the Upgrade
 
 Confirm the version numbers match your expectations.
 
@@ -266,10 +293,10 @@ In the screenshot below, we can see that we are currently running `3.2.1-4` and 
 
 ![An example of running the PHP upgrade check in the command-line.](./assets/upgrade-check.png)
 
-Finally, when you are ready, run the upgrade script, which may take several hours to complete. You may also wish to [log the output](#log-the-output).
+Finally, when you are ready, run the upgrade script, which may take several hours to complete. We recommend you specify an explicit amount of memory on the command line, as server defaults may be too low.  If the upgrade process runs out of memory it will fail and you will need to restore from backup and begin again. You may also wish to [log the output](#log-the-output).
 
 ```bash
-$ php tools/upgrade.php upgrade
+$ php -d memory_limit=2048M tools/upgrade.php upgrade
 ```
 
 If the upgrade is successful, you will see the message below informing you that the upgrade was successful.
@@ -278,37 +305,21 @@ If the upgrade is successful, you will see the message below informing you that 
 
 #### Log the Output
 
-The upgrade script will print a lot of information to the terminal. We recommend sending the output to a log file. This will help you troubleshoot if the upgrade fails.
+The upgrade script will print a lot of information to the terminal. You may wish to use `tee` to record its output. This will help you troubleshoot if the upgrade fails.
 
 ```bash
-$ nohup php tools/upgrade.php upgrade > $OJS_ROOT_PATH/upgrade.log &
+$ php tools/upgrade.php upgrade
 ```
 
-Check the progress of the upgrade.
-```bash
-$ tail -f $OJS_ROOT_PATH/upgrade.log
-```
+### 10. Enabling Access
 
-### 9. Remove Maintenance Mode
-
-When the upgrade is complete, remove the maintenance mode previously configured by modifying your Apache `VirtualHost` directive or updating your `.htaccess` file.
-
-```bash
-$ cd "$OJS_WEB_PATH/"
-$ mv .htaccess .htaccess.disabled
-```
+When the upgrade is complete, undo the changes you made in Step 3.
 
 If your PHP timeouts and/or memory limit were adjusted, restore their original values.
 
-Reload the apache server to apply the changes.
+You may have to restart the apache server to apply the changes.
 
-```bash
-(Debian)$ service apache2 reload
-
-(RHEL)$ systemctl restart httpd
-```
-
-### 10. Test the Upgrade
+### 11. Test the Upgrade
 
 It's important to test the site after an upgrade. Any core functions for your journals should be tested, as well as custom plugins or themes once they have been reinstalled.
 
@@ -350,13 +361,17 @@ The following is a short checklist that covers common use cases.
         - Remove the new user by merging it to your admin account
 6. Additional testing of common tasks
 
-### 11. Restore Custom Plugins
+### 12. Restore Custom Plugins
 
 Use the Plugin Gallery to restore any custom plugins that were installed.
 
 If you have installed custom plugins which are not in the Plugin Gallery, check with the plugin distributor for an update which is compatible with your upgraded version.
 
-### 12. Cleanup Backup Files
+### 13. Reenable the execution of background tasks
+
+Basically undo the steps of the item 2, by reenabling the scheduled tasks and the job worker (if you were making use of it).
+
+### 14. Cleanup Backup Files
 
 You may wish to retain your backup files, but if you don't, you can remove them.
 
@@ -364,7 +379,7 @@ You may wish to retain your backup files, but if you don't, you can remove them.
 $ sudo rm -fR "$OJS_BACKUP_PATH/*"
 ```
 
-### 13. Celebrate
+### 15. Celebrate
 
 **Your OJS instance has been successfully upgraded. Congratulations!**
 

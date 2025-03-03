@@ -3,57 +3,61 @@ noindex: true
 ---
 # Configuration initiale
 
-Érudit utilise le format XML standardisé ​[JATS](https://jats.nlm.nih.gov/)​ pour récupérer les articles de votre instance OJS.
+Érudit utilise le format XML standardisé ​[JATS](https://jats.nlm.nih.gov/)​ pour récupérer les articles de votre instance OJS. Vous pouvez configurer OJS afin qu’il génère automatiquement des fichiers JATS simples permettant la diffusion sur Érudit. 
 
-Vous pouvez configurer OJS afin qu’il génère automatiquement des fichiers JATS simples permettant la diffusion sur Érudit. Il s’agit d’installer et activer deux ​plugins​. Voici les étapes à suivre :
+Vous devez disposer des droits d'administrateur du site pour installer et activer des *plugins* et pour vous assurer que les paramètres de langue et de distribution sont correctement définis. 
 
-## Étapes pour le gestionnaire de la revue
+Vous devez disposer des droits d'administration du système pour configurer l'extraction de texte et les éléments du référentiel OAI. 
 
-Les étapes suivantes peuvent être effectuées dans OJS par un utilisateur ayant le rôle d'Administrateur.
+Les étapes nécessaires à l'installation et à la configuration d'OJS pour chaque niveau d'autorisation sont décrites dans les sections suivantes.
 
-### Étape 1. Installer JATS Template Plugin
 
-Connectez-vous à votre instance OJS avec les paramètres de connexion de votre compte Administrateur.
+## Étapes de l’administrateur du site {#site-admin}
+
+### Étape 1. Installer la dernière version du JATS Template Plugin
+
+Connectez-vous à votre instance OJS avec les paramètres de connexion de votre compte Administrateur de site.
 
 Allez dans Paramètres > Site Web > Modules externes
 
 Cliquez sur “Galerie de plugiciels”.
 
-Une liste des ​*plugins*​ disponibles pour installation sera affichée. Recherchez “JATS Template Plugin”:
+Une liste des plugins​ disponibles pour installation sera affichée. Recherchez “JATS Template Plugin”:
 
 ![JATS Template Plugin dans la liste des plugins](./assets/jatsTemplatePlugin.png)
 
-Cliquez sur “JATS Template Plugin” pour afficher plus d’informations sur ce ​*plugin​*:
+Cliquez sur “JATS Template Plugin” pour afficher plus d’informations sur ce ​plugin​:
 
-![JATS Template Plugin avec des informations sur le plugin et un bouton Installer.](./assets/jatsTemplatePluginInfo.png)
+![JATS Template Plugin avec des informations sur le plugin et un bouton Installer.](./assets/jatsTemplatePluginInstall.png)
 
-(Votre version du ​plugin​ pourrait être différente de celle indiquée ci-haut. Nous recommandons de toujours utiliser la dernière version du ​plugin​ disponible dans la Galerie de plugiciels.)
-
-Cliquez sur le bouton “Installer” afin d’installer le ​plugin​. (Si vous ne voyez pas le bouton “Installer”, assurez-vous d’être connecté en tant qu’Administrateur.) Confirmez que vous souhaitez bien installer le ​plugin.​
+Cliquez sur le bouton “Installer” afin d’installer le ​plugin​. (Si vous ne voyez pas le bouton “Installer”, assurez-vous d’être connecté en tant qu’Administrateur de site.) Confirmez que vous souhaitez bien installer le ​plugin.​
 
 Vous devriez voir une notification confirmant l’installation :
 
-![Notification : Mise à jour réussie vers la version 1.0.1.0.](./assets/jatsTemplatePluginNotification.png)
+![Notification:  Mise à jour réussie vers la version 1.0.1.0](./assets/oaiJatsPluginNotification.png)
 
-La dernière version disponible du ​plugin​ sera installée. (Lorsque de nouvelles versions du plugin​ seront disponibles, vous pourrez les mettre à jour de la même façon. Encore une fois, le numéro de version affiché pourrait différer de celle de la copie d’écran ci-haut.)
+Ensuite, vous devez vous assurer qu'il n'existe pas de version plus récente du plugin. 
 
-### Étape 2. Installer OAI JATS Plugin
+Dans la “Galerie de plugiciels”, trouvez à nouveau le "JATS Template Plugin" et cliquez dessus pour afficher plus d'informations. 
 
-Connectez-vous à votre instance OJS avec les paramètres de connexion de votre compte Administrateur.
+Cliquez sur le bouton de mise à jour s'il est disponible et confirmez que vous souhaitez mettre à jour le plugin. Si le bouton de mise à jour n'est pas disponible, votre plugin est à jour.
 
-Allez dans Paramètres > Site Web > Modules externes. Cliquez sur “Galerie de plugiciels”.
+![JATS Template Plugin avec information et un bouton de mise à jour.](./assets/jatsTemplatePluginInfo.png)
 
-Une liste des ​plugins​ disponibles pour installation sera affichée.
+Vous devriez voir une notification confirmant la dernière version disponible du ​plugin​ à été installée.
 
-Rechechez “OAI JATS Plugin”:
+![Notification : Mise à jour réussie vers la version 1.0.6.1.](./assets/JATStemplatePluginIntallConfirmation.png) 
+
+
+### Étape 2. Installer la dernière version du OAI JATS Plugin
+
+Recherchez “OAI JATS Plugin” dans la “Galerie de plugiciels”:
 
 ![OAI JATS Plugin dans la liste des plugins.](./assets/oaiJatsPlugin.png)
 
 Cliquez sur “OAI JATS Plugin” pour afficher plus d’informations sur ce ​plugin​ :
 
-![OAI JATS Plugin avec des informations sur le plugin et un bouton Installer.](./assets/oaiJatsPluginInfo.png)
-
-(Votre version du ​plugin​ pourrait être différente de celle indiquée ci-haut. Nous recommandons de toujours utiliser la dernière version du ​plugin​ disponible dans la Galerie de plugiciels.)
+![OAI JATS Plugin avec des informations sur le plugin et un bouton Installer.](./assets/OAIjatsPluginInstall.png)
 
 Cliquez sur le bouton “Installer” afin d’installer le ​plugin​. (Si vous ne voyez pas le bouton “Installer”, assurez-vous d’être connecté en tant qu’Administrateur.) Confirmez que vous souhaitez bien installer le ​plugin​.
 
@@ -61,25 +65,36 @@ Vous devriez voir ce message confirmant l’installation :
 
 ![Notification: Mise à jour réussie vers la version 1.0.1.0.](./assets/oaiJatsPluginNotification.png)
 
-La dernière version disponible du ​plugin​ sera installée. (Lorsque de nouvelles versions du plugin​ seront disponibles, vous pourrez les mettre à jour de la même façon. Encore une fois, le numéro de version affiché pourrait différer de celle de la copie d’écran ci-haut.)
+Ensuite, vous devez vous assurer qu'il n'existe pas de version plus récente du plugin. 
 
-Pour pouvoir fournir du contenu JATS à Érudit, vous devez installer la **dernière version du OAI JATS Plugin** adaptée à votre version d'OJS. 
+Dans la “Galerie de plugiciels”, recherchez à nouveau le “OAI JATS Plugin” et cliquez dessus pour afficher plus d’informations.
 
-L'étape suivante montre comment activer et mettre à niveau les plugins afin de les maintenir à jour.
+Cliquez sur le bouton de mise à jour s'il est disponible et confirmez que vous souhaitez mettre à jour le plugin. Si le bouton de mise à jour n'est pas disponible, votre plugin est à jour.
 
-### Étape 3. Activation et mise à jour des plugins
+![OAI JATS Plugin avec information et un bouton de mise à jour.](./assets/oaiJatsPluginInfo.png)
 
-#### Activer les plugins
+Vous devriez voir une notification confirmant la dernière version disponible du ​plugin​ à été installée.
 
-Un coup les ​plugins​ JATS Template Plugin et OAI JATS Plugin installés, vous devez les activer.
+![Notification : Mise à jour réussie vers la version 1.0.6.1.](./assets/JATStemplatePluginIntallConfirmation.png)
 
-**Il faut activer les ​plugins​ une fois ​pour *chaque revue*​ que vous souhaitez inclure à Érudit.**
+### Une note sur la mise à jour des plugins
 
-Allez dans Paramètres > Site Web > Modules externes.
+Les plugins utilisés pour récolter les métadonnées de votre revue sont occasionnellement mis à jour pour corriger des bogues ou améliorer les fonctionnalités. Coalition Publica peut vous demander de mettre à jour les plugins, ou vous pouvez choisir de le faire dans le cadre d’une maintenance régulière.
 
-Cliquez sur “Plugiciels installés”.
+Après toute mise à jour de votre OJS, assurez-vous que tous vos plugins sont mis à jour avec la dernière version adaptée à votre version d’OJS  en suivant les mêmes étapes que ci-dessus  pour effectuer une mise à jour via la Galerie de plugiciels.
 
-Cherchez “JATS Template Plugin” dans la liste des ​plugins :​
+Bien qu’il soit possible de mettre à jour les plugins dans OJS en téléchargeant la dernière version à partir de Github, il est possible que les nouvelles versions ne soient pas compatibles avec votre version particulière d’OJS, donc **s’il vous plaît, mettez toujours à jour les plugins à partir de la Galerie de plugiciels, sauf indication contraire.**
+
+
+### Étape 3. Activer des plugins
+
+Un coup les dernières versions des ​plugins​ JATS Template Plugin et OAI JATS Plugin installés, vous devez les activer​ **une fois ​pour chaque revue** que vous souhaitez inclure à Érudit.
+
+Pour chaque revue à inclure à Érudit, allez dans Paramètres > Site Web > Modules externes.
+
+Cliquez sur “Plugiciels installés” pour une liste des ​plugins installés.
+
+Dans la rubrique *Plugiciels génériques* cherchez “JATS Template Plugin” 
 
 ![JATS Template Plugin dans la liste des plugins avec une case à cocher non cochée à côté.](./assets/jatsTemplatePluginListing.png)
 
@@ -87,7 +102,7 @@ Cochez la case à droite pour activer le ​plugin.​ Vous devriez voir ce mess
 
 ![Notification : Le plugin "JATS Template Plugin" a été activé.](./assets/jatsTemplatePluginListingNotification.png)
 
-Cherchez ensuite “OAI JATS Plugin” :
+Cherchez ensuite sous la rubrique *Plugiciels du format de métadonnées OAI* dans la liste des plugiciels installés pour le plugiciel “Format de métadonnées JATS” (il s'agit du plugin OAI JATS, renommé par le système pour s'aligner sur la convention de nommage de cette rubrique)
 
 ![OAI JATS Plugin dans la liste des plugins avec une case à cocher non cochée à côté.](./assets/jatsMetadataFormatPluginListing.png)
 
@@ -95,40 +110,47 @@ Cochez aussi la case à droite pour l’activer. Vous devriez voir ce message de
 
 ![Notification : Le plugin "OAI JATS Plugin" a été activé.](./assets/jatsMetadataFormatPluginListingNotification.png)
 
-Répétez ces étapes pour chaque revue que vous souhaitez inclure à Érudit.
+**Si vous publiez les épreuves XML de vos articles**, vous devrez modifier les paramètres du plugin format des métadonnées JATS. Les revues qui ne publient **pas** d’épreuves XML peuvent ignorer cette étape, à moins qu'elles n'aient reçu des instructions contraires de la part de leur contact Coalition Publica à la suite d'un test de moissonnage.
 
-#### Mise à jour des plugins
+Cliquez sur la flèche bleue à côté de “Format de métadonnées JATS” afin d’accéder aux paramètres du plugin:
 
-Les plugins utilisés pour récolter les métadonnées de votre revue sont occasionnellement mis à jour pour corriger des bogues ou améliorer les fonctionnalités. Coalition Publica peut vous demander de mettre à jour les plugins, ou vous pouvez choisir de le faire dans le cadre d'une maintenance régulière.
+![The Settings option located under the JATS Metadata Format plugin options.](./assets/jats-settings.png)
 
-Après toute mise à jour de votre OJS, assurez-vous que tous vos plugins sont mis à jour avec la dernière version adaptée à votre version d'OJS en effectuant une mise à jour via la Galerie de plugiciels.
+Cochez ensuite la case à côté de "Ignorer les documents XML JATS téléchargés", puis cliquez sur OK. 
 
-Tout d'abord, allez dans Paramètres > Site Web > Modules externes. Cliquez sur l’onglet  “Galerie de plugiciels”.
+![The JATS Template Plugin settings page with the Ignore uploaded JATS XML documents checkbox checked.](./assets/ignore_xml.png)
 
-Naviguez jusqu'au plugin concerné et cliquez sur son nom pour ouvrir cette fenêtre. 
+Si cette option n'apparaît pas pour vous, veuillez mettre à jour le plugin en suivant les instructions ci-dessous, puis réessayez.
 
-![OAI JATS Plugin avec des informations sur le plugin et un bouton Mise à jour.](./assets/oaiJatsPluginInfo.png)
+**N’oubliez pas de répéter l’étape 3 pour chaque revue que vous souhaitez inclure à Érudit.**
 
-Cliquez sur le bouton de mise à jour si disponible et confirmez que vous souhaitez mettre à jour le plugin. Si le bouton de mise à jour n'est pas disponible, votre plugin est déjà à jour.
 
-![Notification: Mise à jour réussie vers la version 1.0.1.0.](./assets/oaiJatsPluginNotification.png)
+### Étape 4. Réviser les paramètres régionales de revue
 
-Vous verrez une confirmation après que la mise à jour ait été effectuée avec succès.
+Un « paramètre régional » est requise et doit être installé pour pour chaque langue dans laquelle le journal publie, même s'il ne le fait que rarement.
 
-Bien qu'il soit possible de mettre à jour les plugins dans OJS en téléchargeant la dernière version à partir de Github, il est possible que les nouvelles versions ne soient pas compatibles avec votre version particulière d'OJS, donc **s'il vous plaît, mettez toujours à jour les plugins à partir de la Galerie de plugiciels, sauf indication contraire**.
+Connecté en tant qu'administrateur du site, allez à Paramètres > Site web > Configuration > Langue pour vérifier que toutes les langues dans lesquelles la revue publie sont répertoriées.
 
-### Étape 4. Réviser les paramètres de revue
+![L'option des langues dans les paramètres du site web](./assets/SetupLanguagesMissingFR.png)
 
-Plusieurs paramètres de revue doivent être correctement configurés afin de permettre la récupération des données par Érudit. Pour chaque revue que vous souhaitez inclure, assurez-vous que :
+Si une langue n'est pas répertoriée, vous devez installer cette langue. 
 
-* Pour chacune des rubriques de la revue, le champ “Identifier les articles publiés dans cette rubrique en tant que un(e)” utilise une des [valeurs suggérées pour le JATS article-type​](https://jats.nlm.nih.gov/archiving/tag-library/1.1/attribute/article-type.html). Veuillez noter que la mention "research-article" n'est utilisée que pour les recherches évaluées par les pairs. Si vous ne savez pas comment identifier les articles de la section, la mention "autre" est acceptable.
-* Les paramètres de revue sont complets, ex.:
-	* Un ISSN est spécifié
-	* Le titre de la revue est le même que celui enregistré à ​[issn.org](https://www.issn.org/)
-	* Un éditeur est spécifié dans Paramètres > Revue > Bloc générique
-	* Droit d’auteur
-		* Assurez-vous que le titulaire du droit d’auteur des articles (“Auteur”, “Revue” ou “Autre”) soit adéquatement identifié dans Paramètres > Distribution > Autorisations.
-		* Assurez-vous, lorsque vous établissez le “Calendrier de publication” d’un article, d’y associer les autorisations (titulaire du droit d’auteur et année du droit d’auteur)
+Allez à Administration > Paramètres du site > Réglage du site > Langues. 
+
+Cliquez sur Installer le paramètre régional:
+
+![Locales installées dans les paramètres du site avec option d'installationl](./assets/SetupLanguagesintallLocale.png)
+
+Cochez les paramètres régionaux que vous souhaitez installer et cliquez sur Enregistrer.
+
+![Option des langues locales dans la liste ](./assets/SetupLanguagesintallLocaleList.png)
+
+La langue devrait maintenant apparaître dans la liste des langues disponibles.
+
+![Langues locales installées dans les paramètres du site avec FR installé ](./assets/SetupLanguagesFRlocaleinstalled.png)
+
+Notez que si la revue publie en français, la paramètre régional Français (Canada) est recommandée pour les revues sur Érudit.
+
 
 ### Étape 5. Vérifier les paramètres de distribution
 
@@ -136,20 +158,21 @@ Sous Paramètres > Distribution > Accès, vous verrez un ensemble de paramètres
 
 ![Paramètres d'accès au contenu de la revue avec des options pour fournir un accès libre (sélectionné), exiger un abonnement, ne pas utiliser OJS pour la publication et permettre l'accès OAI au contenu (sélectionné).](./assets/journalSettings.png)
 
-Quel que soit votre choix pour votre revue parmi les 3 premiers paramètres d’accès, assurez-vous d’avoir coché “​*Enable OAI access to content*​”. Enregistrez les paramètres.
+Assurez-vous d’avoir coché “​*Enable OAI access to content*​”. Enregistrez les paramètres.
 
-Si vos paramètres d’accès sont configurés
+### Note concernant l'utilisation d'OJS  pour abonnements et utilisation d’OJS sans publication
 
-* pour exiger un abonnement pour accéder à une partie ou à l’intégralité de son contenu, ou
-* ne pas utiliser OJS pour publier le contenu de la revue en ligne
+Si la revue exige un abonnement pour accéder à une partie ou à l’intégralité de son contenu, ou n’utilise pas OJS pour publier le contenu de la revue en ligne, l'administrateur du site ou quelqu’un ayant le rôle Directeur de la revue devra suivre les étapes décrites dans la section *Abonnements et utilisation d’OJS sans publication* du présent document pour terminer la configuration de la revue. 
 
-... suivre les instructions ci-dessous, à la section ​*Abonnements et utilisation d’OJS sans publication*,​ afin d’inclure ses contenus sur Érudit.
+Toutefois, les étapes décrites dans la section *Abonnements et utilisation d’OJS sans publication* doivent être réalisées **après** qu'un administrateur système a effectué les étapes 1, 2 et 3 de la section Étapes de l'administrateur système ci-dessous.
 
-## Étapes de l'administrateur système
 
-L'étape suivante nécessite un accès *backend* à OJS par un administrateur système. Vous devrez peut-être contacter votre fournisseur d'hébergement ou votre responsable technique pour effectuer cette étape.
+## Étapes de l'administrateur système {#sys-admin}
 
-### Étape 6. Activer l’indexation des PDF
+Les étapes suivantes nécessite un accès *backend* à OJS par un administrateur système. Ces étapes doivent être suivies **après avoir effectué les étapes décrites dans la section relative à l'administrateur du site.** Il se peut que vous deviez contacter votre fournisseur d'hébergement ou votre responsable technique pour effectuer les étapes suivantes.
+
+
+### Étape 1. Activer l’indexation des PDF
 
 Cette étape peut requérir l'aide de votre administrateur système puisqu'elle requiert l’accès à un fichier sur le serveur où votre instance OJS est installée.
 
@@ -165,3 +188,27 @@ REMARQUE: cette étape n’est requise que si vous avez récemment activé l’i
 * Vous pouvez vérifier que l’index a été correctement reconstruit en recherchant du texte qui n’apparaît que dans un PDF (c’est-à-dire pas dans d’autres métadonnées de soumission stockées par OJS, telles que des champs de titre ou de résumé).
 
 En plus de configurer votre OJS pour Coalition Publica, cela permettra à OJS d’indexer les documents PDF pour son propre moteur de recherche.
+
+
+## Étape 2. Configurez l’identifiant d’espace de nom de votre OAI
+
+Le dépôt OAI de chaque instance OJS doit être configuré afin d’avoir un identifiant d’espace de nom (un *namespace-identifier* selon la syntaxe OAI-PMH) unique. L'identifiant est configuré lors de l'installation, et se trouve par la suite dans le fichier de configuration config.inc.php.
+
+### Choisir un identifiant unique pour le dépôt OAI
+L’identifiant d’espace de nom de votre dépôt OAI doit être unique au sein de l’instance OJS sur laquelle votre revue est hébergée. Un choix logique consiste à utiliser la partie de premier niveau de l’URL de l’instance OJS. Par exemple, si l’URL est “https://revues.bibliotheque.exemple.com”, vous pouvez utiliser “revues.bibliotheque.exemple.com” comme identifiant de nommage. 
+L’identifiant d’espace de nom que vous utilisez doit respecter la syntaxe [URI (Uniform Resource Identifiers)](https://www.ietf.org/rfc/rfc2396.txt?number=2396). En particulier, tous les caractères réservés de la section 2.2 ne peuvent pas être utilisés : `;`, `/`, `?`, `:`, `@`, `&`, `=`, `+`, `$`, ou `,`.
+
+### Modifier l'identifiant d’espace de nom de votre dépôt OAI
+
+Cet identifiant peut être configuré dans le fichier config.inc.php dans votre répertoire d'installation OJS et peut être modifié directement. Il se trouve dans la section [oai] du fichier de configuration et doit être ajouté après repository_id = . Évitez de modifier inutilement l'identifiant de votre dépôt, mais si vous devez le modifier, veuillez envoyer un courriel à info@coalition-publi.ca avant de le faire surout s'il y a déjà une revue sur votre instance qui participe à Coalition Publica.
+
+### Étape 3. S’assurer d’avoir saisi un API key secret
+
+**Cette étape n’est pas requise si vous utilisez OJS pour publier une revue en libre accès.**
+
+Dans votre fichier de configuration OJS (​`config.inc.php`​ dans le répertoire d’installation de votre OJS) vous trouverez une directive appelée “`api_key_secret`​”. Par défaut, ce paramètre est vide. Si c’est le cas, modifiez-le pour qu’il contienne une séquence de 32 caractères ou plus (n’importe quelle lettres et symboles). Votre instance OJS en sera plus sécurisée lors de l’utilisation des ​*API keys​*.
+
+Vous n’aurez pas à mémoriser la valeur de ce paramètre, mais si vous le perdez, tous ceux utilisant les ​*API keys​* devront en obtenir une nouvelle.
+
+Un coup le paramètre renseigné, sauvegardez le fichier.
+

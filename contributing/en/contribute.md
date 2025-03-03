@@ -1,6 +1,8 @@
 ---
 title: Contribute - Guidelines for Contributing to PKP Documentation
+showPageTOC: true
 ---
+
 # Contribute to PKP Documentation
 
 PKP software documentation is created and maintained by PKP staff, users, and developers. It’s coordinated by [the Documentation Interest Group (DIG)](https://pkp.sfu.ca/documentation-interest-group/), which is made up of PKP staff, users, and developers who are interested in documentation. The DIG is available to answer questions and offer assistance and guidance to others who want to contribute to documentation.
@@ -43,7 +45,7 @@ Have you made a document about PKP software that is specific to your local insti
 
 ### Identify documentation that is missing or needs improvement
 
-If you notice something that there should be documentation for or existing documentation that needs to be corrected, updated, or explained more clearly, we want to know. You can send your suggestion via our [feedback form](https://pkp.sfu.ca/documentation-feedback) or file an issue in the [GitHub PKP Docs repository](https://github.com/pkp/pkp-docs). To file an issue in the repository, you first have to create a GitHub account and sign in. If you want to edit a document directly, you can click the *Improve this page* link on any page in the Documentation Hub. 
+If you notice something that there should be documentation for or existing documentation that needs to be corrected, updated, or explained more clearly, we want to know. You can send your suggestion via our [feedback form](https://pkp.sfu.ca/documentation-feedback) or file an issue in the [GitHub PKP Docs repository](https://github.com/pkp/pkp-docs). To file an issue in the repository, you first have to create a GitHub account and sign in. If you want to edit a document directly, you can click the *Edit this page* link on any page in the Documentation Hub. 
 
 Members of the DIG review suggestions and add them to lists of potential tasks. Please provide as much detail as possible in your suggestion.
 
@@ -51,19 +53,26 @@ Members of the DIG review suggestions and add them to lists of potential tasks. 
 
 PKP keeps track of documentation that needs to be created, updated, and reviewed on a [shared spreadsheet](https://docs.google.com/spreadsheets/d/1bo0etXPjDxC_xdmOGCdwAtdXv85ojdqRdNr3sfMD2aU/) that's maintained by the DIG. If you're looking for a task, the spreadsheet is an excellent place to start. You can also add new tasks to the spreadsheet. 
 
-Tasks are categorized by role and listed on different worksheets according to roles. You can look for tasks that match your role or experience with PKP software. The roles are as follows:
+Tasks are categorized by guide and size, and listed on different worksheets accordingly. You can look for tasks that match your interests or experience with PKP software. The categories are:
 
-- **Administrators**: Administrators are responsible for PKP software installation and upgrades, ensuring the server settings are accurate, adding language files, and creating any new journals on the installation. Administrators have an understanding of and may modify system files and settings, but are not responsible for programming new features or developing the software.
-- **Developers**: Developers participate in the development of PKP software applications and plugins. They write and modify the code and evaluate and implement new features.
-- **Application Users**: Application Users represent end users of PKP software in a variety of different roles, including Journal Manager, Press Manager, Conference Manager, Editor, Reviewer, Author, Copyeditor, and Subscription Manager. They configure settings in the software applications but do not modify system files.
-- **Other**: Documentation tasks that are not specific to one of the above roles are added to this sheet.
+- **Learning OJS 3 Updates**: Improvements and updates for the [Learning OJS 3 Guide](/learning-ojs/).
+- **Smaller Guide Updates**: Small content improvements and updates to guides across PKP's documentation hub.
+- **Major Projects for Multiple Guides**: Large content changes that may impact multiple guides.
+- **Administrator Guide Updates**: Improvements and updates for the [Administrator's Guide](/dev/admin-guide/).
+- **New Guides**: Recommendations for new guides to develop.
+
+Additional sheets may be added to track ongoing DIG projects, such as updates for new software versions.
 
 For each task you can see the following information:
 
-- Topic, Description, and Notes explain the content of the documentation that needs to be created or updated. Read these to see what you should include and any relevant background information.
-- Action Needed indicates whether the documentation needs to be created from scratch, updated, reviewed, maintained, or moved.
-- Status notes whether the documentation is not started, in progress, or complete. Look for a task that is not started yet or one that is in progress that you want to assist with.
-- If the documentation needs to be added to an existing document or an existing document needs to be edited, the document name will be included in the Add to/Part of column and the URL for the document will be included in the New URL column.
+- "Date Added" indicates the date this was added to the spreadsheet.
+- "Topic" and "Description and Notes" explain the content of the documentation that needs to be created or updated. Read these to see what you should include and any relevant background information.
+- "Action Needed" indicates whether the documentation needs to be created from scratch, updated, reviewed, maintained, or moved.
+- "Status" notes whether the documentation is not started, in progress, or complete. Look for a task that is not started yet or one that is in progress that you want to assist with.
+- "Guides" or "Section of Guide" (if applicable) indicates which guide(s) or sections of a guide this task applies to.
+- "Reported by" indicates who created the task.
+- "Person Responsible" indicates who will be working on the task, if someone has been assigned to it.
+- "Working URL" is a link to a working document for this task, if one exists.
 
 ## Sign up for a Task
 
@@ -78,7 +87,7 @@ For each task you can see the following information:
 
 ## Contribute in Other Formats
 
-We encourage users and community members to write and edit documentation in markdown and contribute through GitHub. However, contributed documentation can be created or edited in any format you want to work in, including a .doc or .odt text document, a Google doc, or an email, and the DIG will convert the documentation to markdown. Please do not contribute documentation in PDF, HTML, or LaTeX format.
+We encourage users and community members to write and edit documentation in Markdown and contribute through GitHub. However, contributed documentation can be created or edited in any format you want to work in, including a .doc or .odt text document, a Google doc, or an email, and the DIG will convert the documentation to Markdown. Please do not contribute documentation in PDF, HTML, or LaTeX format.
 
 Some contributors prefer to create or edit documentation in a Word, Open Document, Google Doc, or another format. If you’re creating documentation with a group of people, it can be easier to use a Google Doc than GitHub.
 
